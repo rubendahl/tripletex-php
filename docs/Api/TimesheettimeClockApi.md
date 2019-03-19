@@ -1,6 +1,6 @@
 # Tripletex\TimesheettimeClockApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,15 +11,19 @@ Method | HTTP request | Description
 [**start**](TimesheettimeClockApi.md#start) | **PUT** /timesheet/timeClock/:start | Start time clock.
 [**stop**](TimesheettimeClockApi.md#stop) | **PUT** /timesheet/timeClock/{id}/:stop | Stop time clock.
 
+
 # **get**
 > \Tripletex\Model\ResponseWrapperTimeClock get($id, $fields)
 
 Find time clock entry by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -48,8 +52,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **int**| Element ID |
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -62,7 +66,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -71,10 +75,13 @@ Name | Type | Description  | Notes
 
 Find a user’s present running time clock.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -103,8 +110,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **employee_id** | [**int**](../Model/.md)| Employee ID. Defaults to ID of token owner. | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **employee_id** | **int**| Employee ID. Defaults to ID of token owner. | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -117,7 +124,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -126,10 +133,13 @@ Name | Type | Description  | Notes
 
 Update time clock by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -158,7 +168,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
+ **id** | **int**| Element ID |
  **body** | [**\Tripletex\Model\TimeClock**](../Model/TimeClock.md)| Partial object describing what should be updated | [optional]
 
 ### Return type
@@ -172,7 +182,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -181,10 +191,13 @@ Name | Type | Description  | Notes
 
 Find time clock entries corresponding with sent data.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -204,9 +217,9 @@ $activity_id = "activity_id_example"; // string | List of IDs
 $date_from = "date_from_example"; // string | From and including
 $date_to = "date_to_example"; // string | To and excluding
 $hour_id = "hour_id_example"; // string | List of IDs
-$is_running = True; // bool | Equals
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$is_running = true; // bool | Equals
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -223,18 +236,18 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**string**](../Model/.md)| List of IDs | [optional]
- **employee_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **project_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **activity_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **date_from** | [**string**](../Model/.md)| From and including | [optional]
- **date_to** | [**string**](../Model/.md)| To and excluding | [optional]
- **hour_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **is_running** | [**bool**](../Model/.md)| Equals | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **string**| List of IDs | [optional]
+ **employee_id** | **string**| List of IDs | [optional]
+ **project_id** | **string**| List of IDs | [optional]
+ **activity_id** | **string**| List of IDs | [optional]
+ **date_from** | **string**| From and including | [optional]
+ **date_to** | **string**| To and excluding | [optional]
+ **hour_id** | **string**| List of IDs | [optional]
+ **is_running** | **bool**| Equals | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -247,7 +260,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -256,10 +269,13 @@ Name | Type | Description  | Notes
 
 Start time clock.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -274,7 +290,7 @@ $apiInstance = new Tripletex\Api\TimesheettimeClockApi(
 );
 $activity_id = 56; // int | Activity ID
 $employee_id = 56; // int | Employee ID. Defaults to ID of token owner.
-$project_id = 56; // int | Project ID
+$project_id = 0; // int | Project ID
 $date = "date_example"; // string | Optional. Default is today’s date
 
 try {
@@ -290,10 +306,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **activity_id** | [**int**](../Model/.md)| Activity ID |
- **employee_id** | [**int**](../Model/.md)| Employee ID. Defaults to ID of token owner. | [optional]
- **project_id** | [**int**](../Model/.md)| Project ID | [optional]
- **date** | [**string**](../Model/.md)| Optional. Default is today’s date | [optional]
+ **activity_id** | **int**| Activity ID |
+ **employee_id** | **int**| Employee ID. Defaults to ID of token owner. | [optional]
+ **project_id** | **int**| Project ID | [optional] [default to 0]
+ **date** | **string**| Optional. Default is today’s date | [optional]
 
 ### Return type
 
@@ -306,7 +322,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -315,10 +331,13 @@ Name | Type | Description  | Notes
 
 Stop time clock.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -332,7 +351,7 @@ $apiInstance = new Tripletex\Api\TimesheettimeClockApi(
     $config
 );
 $id = 56; // int | Element ID
-$version = 56; // int | Number of current version
+$version = 0; // int | Number of current version
 
 try {
     $apiInstance->stop($id, $version);
@@ -346,8 +365,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **version** | [**int**](../Model/.md)| Number of current version | [optional]
+ **id** | **int**| Element ID |
+ **version** | **int**| Number of current version | [optional] [default to 0]
 
 ### Return type
 

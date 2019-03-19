@@ -25,14 +25,14 @@ Name | Type | Description | Notes
 **completed_date** | **string** |  | [optional] 
 **approved_date** | **string** |  | [optional] 
 **date** | **string** |  | [optional] 
-**travel_advance** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**fixed_invoiced_amount** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**amount** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**low_rate_vat** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**medium_rate_vat** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**high_rate_vat** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**payment_amount** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**payment_amount_currency** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
+**travel_advance** | **float** |  | [optional] 
+**fixed_invoiced_amount** | **float** |  | [optional] 
+**amount** | **float** |  | [optional] 
+**low_rate_vat** | **float** |  | [optional] 
+**medium_rate_vat** | **float** |  | [optional] 
+**high_rate_vat** | **float** |  | [optional] 
+**payment_amount** | **float** |  | [optional] 
+**payment_amount_currency** | **float** |  | [optional] 
 **number** | **int** |  | [optional] 
 **invoice** | [**\Tripletex\Model\Invoice**](Invoice.md) |  | [optional] 
 **title** | **string** |  | [optional] 
@@ -45,4 +45,5 @@ Name | Type | Description | Notes
 **actions** | [**\Tripletex\Model\Link[]**](Link.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

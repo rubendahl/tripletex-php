@@ -1,21 +1,25 @@
 # Tripletex\CrmprospectApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get**](CrmprospectApi.md#get) | **GET** /crm/prospect/{id} | Get prospect by ID.
 [**search**](CrmprospectApi.md#search) | **GET** /crm/prospect | Find prospects corresponding with sent data.
 
+
 # **get**
 > \Tripletex\Model\ResponseWrapperProspect get($id, $fields)
 
 Get prospect by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -44,8 +48,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **int**| Element ID |
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -58,7 +62,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -67,10 +71,13 @@ Name | Type | Description  | Notes
 
 Find prospects corresponding with sent data.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -89,7 +96,7 @@ $created_date_from = "created_date_from_example"; // string | From and including
 $created_date_to = "created_date_to_example"; // string | To and excluding
 $customer_id = "customer_id_example"; // string | Equals
 $sales_employee_id = "sales_employee_id_example"; // string | Equals
-$is_closed = True; // bool | Equals
+$is_closed = true; // bool | Equals
 $closed_reason = "closed_reason_example"; // string | Equals
 $closed_date_from = "closed_date_from_example"; // string | From and including
 $closed_date_to = "closed_date_to_example"; // string | To and excluding
@@ -97,8 +104,8 @@ $competitor = "competitor_example"; // string | Containing
 $prospect_type = "prospect_type_example"; // string | Equals
 $project_id = "project_id_example"; // string | Equals
 $project_offer_id = "project_offer_id_example"; // string | Equals
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -115,24 +122,24 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | [**string**](../Model/.md)| Containing | [optional]
- **description** | [**string**](../Model/.md)| Containing | [optional]
- **created_date_from** | [**string**](../Model/.md)| From and including | [optional]
- **created_date_to** | [**string**](../Model/.md)| To and excluding | [optional]
- **customer_id** | [**string**](../Model/.md)| Equals | [optional]
- **sales_employee_id** | [**string**](../Model/.md)| Equals | [optional]
- **is_closed** | [**bool**](../Model/.md)| Equals | [optional]
- **closed_reason** | [**string**](../Model/.md)| Equals | [optional]
- **closed_date_from** | [**string**](../Model/.md)| From and including | [optional]
- **closed_date_to** | [**string**](../Model/.md)| To and excluding | [optional]
- **competitor** | [**string**](../Model/.md)| Containing | [optional]
- **prospect_type** | [**string**](../Model/.md)| Equals | [optional]
- **project_id** | [**string**](../Model/.md)| Equals | [optional]
- **project_offer_id** | [**string**](../Model/.md)| Equals | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **name** | **string**| Containing | [optional]
+ **description** | **string**| Containing | [optional]
+ **created_date_from** | **string**| From and including | [optional]
+ **created_date_to** | **string**| To and excluding | [optional]
+ **customer_id** | **string**| Equals | [optional]
+ **sales_employee_id** | **string**| Equals | [optional]
+ **is_closed** | **bool**| Equals | [optional]
+ **closed_reason** | **string**| Equals | [optional]
+ **closed_date_from** | **string**| From and including | [optional]
+ **closed_date_to** | **string**| To and excluding | [optional]
+ **competitor** | **string**| Containing | [optional]
+ **prospect_type** | **string**| Equals | [optional]
+ **project_id** | **string**| Equals | [optional]
+ **project_offer_id** | **string**| Equals | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -145,7 +152,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

@@ -1,6 +1,6 @@
 # Tripletex\LedgervoucherApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -21,15 +21,19 @@ Method | HTTP request | Description
 [**uploadAttachment**](LedgervoucherApi.md#uploadAttachment) | **POST** /ledger/voucher/{voucherId}/attachment | Upload attachment to voucher. If the voucher already has an attachment the content will be appended to the existing attachment as new PDF page(s). Valid document formats are PDF, PNG, JPEG and TIFF. Non PDF formats will be converted to PDF. Send as multipart form.
 [**uploadPdf**](LedgervoucherApi.md#uploadPdf) | **POST** /ledger/voucher/{voucherId}/pdf/{fileName} | [DEPRECATED] Use POST ledger/voucher/{voucherId}/attachment instead.
 
+
 # **delete**
 > delete($id)
 
 [BETA] Delete voucher by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -56,7 +60,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
+ **id** | **int**| Element ID |
 
 ### Return type
 
@@ -78,10 +82,13 @@ void (empty response body)
 
 [BETA] Delete attachment.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -96,8 +103,8 @@ $apiInstance = new Tripletex\Api\LedgervoucherApi(
 );
 $id = 56; // int | ID of voucher containing the attachment to delete.
 $version = 56; // int | Version of voucher containing the attachment to delete.
-$send_to_inbox = True; // bool | Should the attachment be sent to inbox rather than deleted?
-$split = True; // bool | If sendToInbox is true, should the attachment be split into one voucher per page?
+$send_to_inbox = false; // bool | Should the attachment be sent to inbox rather than deleted?
+$split = false; // bool | If sendToInbox is true, should the attachment be split into one voucher per page?
 
 try {
     $apiInstance->deleteAttachment($id, $version, $send_to_inbox, $split);
@@ -111,10 +118,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| ID of voucher containing the attachment to delete. |
- **version** | [**int**](../Model/.md)| Version of voucher containing the attachment to delete. | [optional]
- **send_to_inbox** | [**bool**](../Model/.md)| Should the attachment be sent to inbox rather than deleted? | [optional]
- **split** | [**bool**](../Model/.md)| If sendToInbox is true, should the attachment be split into one voucher per page? | [optional]
+ **id** | **int**| ID of voucher containing the attachment to delete. |
+ **version** | **int**| Version of voucher containing the attachment to delete. | [optional]
+ **send_to_inbox** | **bool**| Should the attachment be sent to inbox rather than deleted? | [optional] [default to false]
+ **split** | **bool**| If sendToInbox is true, should the attachment be split into one voucher per page? | [optional] [default to false]
 
 ### Return type
 
@@ -136,10 +143,13 @@ void (empty response body)
 
 Get PDF representation of voucher by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -167,7 +177,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **voucher_id** | [**int**](../Model/.md)| Voucher ID from which PDF is downloaded. |
+ **voucher_id** | **int**| Voucher ID from which PDF is downloaded. |
 
 ### Return type
 
@@ -189,10 +199,13 @@ Name | Type | Description  | Notes
 
 Get voucher by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -221,8 +234,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **int**| Element ID |
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -235,7 +248,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -244,10 +257,13 @@ Name | Type | Description  | Notes
 
 [BETA] Upload a document to create one or more vouchers. Valid document formats are PDF, PNG, JPEG, TIFF and EHF. Send as multipart form.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -260,9 +276,9 @@ $apiInstance = new Tripletex\Api\LedgervoucherApi(
     new GuzzleHttp\Client(),
     $config
 );
-$file = "file_example"; // \SplFileObject | 
-$description = "description_example"; // string | 
-$split = True; // bool | If the document consists of several pages, should the document be split into one voucher per page?
+$file = "/path/to/file.txt"; // \SplFileObject | The file
+$description = "description_example"; // string | Optional description to use for the voucher(s). If omitted the file name will be used.
+$split = false; // bool | If the document consists of several pages, should the document be split into one voucher per page?
 
 try {
     $result = $apiInstance->importDocument($file, $description, $split);
@@ -277,9 +293,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **file** | **\SplFileObject****\SplFileObject**|  | [optional]
- **description** | [**string**](../Model/.md)|  | [optional]
- **split** | [**bool**](../Model/.md)| If the document consists of several pages, should the document be split into one voucher per page? | [optional]
+ **file** | **\SplFileObject**| The file |
+ **description** | **string**| Optional description to use for the voucher(s). If omitted the file name will be used. | [optional]
+ **split** | **bool**| If the document consists of several pages, should the document be split into one voucher per page? | [optional] [default to false]
 
 ### Return type
 
@@ -292,7 +308,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: multipart/form-data
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -301,10 +317,13 @@ Name | Type | Description  | Notes
 
 Import GBAT10. Send as multipart form.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -317,9 +336,9 @@ $apiInstance = new Tripletex\Api\LedgervoucherApi(
     new GuzzleHttp\Client(),
     $config
 );
-$generate_vat_postings = True; // bool | 
-$file = "file_example"; // \SplFileObject | 
-$encoding = "encoding_example"; // string | 
+$generate_vat_postings = true; // bool | If the import should generate VAT postings
+$file = "/path/to/file.txt"; // \SplFileObject | The file
+$encoding = "utf-8"; // string | The file encoding
 
 try {
     $apiInstance->importGbat10($generate_vat_postings, $file, $encoding);
@@ -333,9 +352,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **generate_vat_postings** | [**bool**](../Model/.md)|  | [optional]
- **file** | **\SplFileObject****\SplFileObject**|  | [optional]
- **encoding** | [**string**](../Model/.md)|  | [optional]
+ **generate_vat_postings** | **bool**| If the import should generate VAT postings |
+ **file** | **\SplFileObject**| The file |
+ **encoding** | **string**| The file encoding | [optional] [default to utf-8]
 
 ### Return type
 
@@ -357,10 +376,13 @@ void (empty response body)
 
 [BETA] Find non-posted vouchers.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -373,12 +395,12 @@ $apiInstance = new Tripletex\Api\LedgervoucherApi(
     new GuzzleHttp\Client(),
     $config
 );
-$include_non_approved = True; // bool | Include non-approved vouchers in the result.
+$include_non_approved = false; // bool | Include non-approved vouchers in the result.
 $date_from = "date_from_example"; // string | From and including
 $date_to = "date_to_example"; // string | To and excluding
 $changed_since = "changed_since_example"; // string | Only return elements that have changed since this date and time
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -395,14 +417,14 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **include_non_approved** | [**bool**](../Model/.md)| Include non-approved vouchers in the result. |
- **date_from** | [**string**](../Model/.md)| From and including | [optional]
- **date_to** | [**string**](../Model/.md)| To and excluding | [optional]
- **changed_since** | [**string**](../Model/.md)| Only return elements that have changed since this date and time | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **include_non_approved** | **bool**| Include non-approved vouchers in the result. | [default to false]
+ **date_from** | **string**| From and including | [optional]
+ **date_to** | **string**| To and excluding | [optional]
+ **changed_since** | **string**| Only return elements that have changed since this date and time | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -415,19 +437,22 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **post**
-> \Tripletex\Model\ResponseWrapperVoucher post($body, $send_to_ledger)
+> \Tripletex\Model\ResponseWrapperVoucher post($send_to_ledger, $body)
 
 Add new voucher. IMPORTANT: Also creates postings. Only the gross amounts will be used
+
+
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -440,11 +465,11 @@ $apiInstance = new Tripletex\Api\LedgervoucherApi(
     new GuzzleHttp\Client(),
     $config
 );
+$send_to_ledger = true; // bool | Should the voucher be sent to ledger? Requires the \"Advanced Voucher\" permission.
 $body = new \Tripletex\Model\Voucher(); // \Tripletex\Model\Voucher | JSON representing the new object to be created. Should not have ID and version set.
-$send_to_ledger = True; // bool | Should the voucher be sent to ledger? Requires the \"Advanced Voucher\" permission.
 
 try {
-    $result = $apiInstance->post($body, $send_to_ledger);
+    $result = $apiInstance->post($send_to_ledger, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LedgervoucherApi->post: ', $e->getMessage(), PHP_EOL;
@@ -456,8 +481,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **send_to_ledger** | **bool**| Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. | [optional] [default to true]
  **body** | [**\Tripletex\Model\Voucher**](../Model/Voucher.md)| JSON representing the new object to be created. Should not have ID and version set. | [optional]
- **send_to_ledger** | [**bool**](../Model/.md)| Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. | [optional]
 
 ### Return type
 
@@ -470,19 +495,22 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **put**
-> \Tripletex\Model\ResponseWrapperVoucher put($id, $body, $send_to_ledger)
+> \Tripletex\Model\ResponseWrapperVoucher put($id, $send_to_ledger, $body)
 
 [BETA] Update voucher. Postings with guiRow==0 will be deleted and regenerated.
+
+
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -496,11 +524,11 @@ $apiInstance = new Tripletex\Api\LedgervoucherApi(
     $config
 );
 $id = 56; // int | Element ID
+$send_to_ledger = true; // bool | Should the voucher be sent to ledger? Requires the \"Advanced Voucher\" permission.
 $body = new \Tripletex\Model\Voucher(); // \Tripletex\Model\Voucher | Partial object describing what should be updated
-$send_to_ledger = True; // bool | Should the voucher be sent to ledger? Requires the \"Advanced Voucher\" permission.
 
 try {
-    $result = $apiInstance->put($id, $body, $send_to_ledger);
+    $result = $apiInstance->put($id, $send_to_ledger, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LedgervoucherApi->put: ', $e->getMessage(), PHP_EOL;
@@ -512,9 +540,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
+ **id** | **int**| Element ID |
+ **send_to_ledger** | **bool**| Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. | [optional] [default to true]
  **body** | [**\Tripletex\Model\Voucher**](../Model/Voucher.md)| Partial object describing what should be updated | [optional]
- **send_to_ledger** | [**bool**](../Model/.md)| Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. | [optional]
 
 ### Return type
 
@@ -527,19 +555,22 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
 # **putList**
-> \Tripletex\Model\ListResponseVoucher putList($body, $send_to_ledger)
+> \Tripletex\Model\ListResponseVoucher putList($send_to_ledger, $body)
 
 [BETA] Update multiple vouchers. Postings with guiRow==0 will be deleted and regenerated.
+
+
 
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -552,11 +583,11 @@ $apiInstance = new Tripletex\Api\LedgervoucherApi(
     new GuzzleHttp\Client(),
     $config
 );
+$send_to_ledger = true; // bool | Should the voucher be sent to ledger? Requires the \"Advanced Voucher\" permission.
 $body = array(new \Tripletex\Model\Voucher()); // \Tripletex\Model\Voucher[] | JSON representing updates to object. Should have ID and version set.
-$send_to_ledger = True; // bool | Should the voucher be sent to ledger? Requires the \"Advanced Voucher\" permission.
 
 try {
-    $result = $apiInstance->putList($body, $send_to_ledger);
+    $result = $apiInstance->putList($send_to_ledger, $body);
     print_r($result);
 } catch (Exception $e) {
     echo 'Exception when calling LedgervoucherApi->putList: ', $e->getMessage(), PHP_EOL;
@@ -568,8 +599,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **send_to_ledger** | **bool**| Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. | [optional] [default to true]
  **body** | [**\Tripletex\Model\Voucher[]**](../Model/Voucher.md)| JSON representing updates to object. Should have ID and version set. | [optional]
- **send_to_ledger** | [**bool**](../Model/.md)| Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. | [optional]
 
 ### Return type
 
@@ -582,7 +613,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -591,10 +622,13 @@ Name | Type | Description  | Notes
 
 Reverses the voucher, and returns the reversed voucher. Supports reversing most voucher types, except salary transactions.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -623,8 +657,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| ID of voucher that should be reversed. |
- **date** | [**string**](../Model/.md)| Reverse voucher date |
+ **id** | **int**| ID of voucher that should be reversed. |
+ **date** | **string**| Reverse voucher date |
 
 ### Return type
 
@@ -637,7 +671,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -646,10 +680,13 @@ Name | Type | Description  | Notes
 
 Find vouchers corresponding with sent data.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -669,8 +706,8 @@ $number = "number_example"; // string | List of IDs
 $number_from = 56; // int | From and including
 $number_to = 56; // int | To and excluding
 $type_id = "type_id_example"; // string | List of IDs
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -687,17 +724,17 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **date_from** | [**string**](../Model/.md)| From and including |
- **date_to** | [**string**](../Model/.md)| To and excluding |
- **id** | [**string**](../Model/.md)| List of IDs | [optional]
- **number** | [**string**](../Model/.md)| List of IDs | [optional]
- **number_from** | [**int**](../Model/.md)| From and including | [optional]
- **number_to** | [**int**](../Model/.md)| To and excluding | [optional]
- **type_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **date_from** | **string**| From and including |
+ **date_to** | **string**| To and excluding |
+ **id** | **string**| List of IDs | [optional]
+ **number** | **string**| List of IDs | [optional]
+ **number_from** | **int**| From and including | [optional]
+ **number_to** | **int**| To and excluding | [optional]
+ **type_id** | **string**| List of IDs | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -710,7 +747,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -719,10 +756,13 @@ Name | Type | Description  | Notes
 
 [BETA] Send voucher to inbox.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -752,9 +792,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| ID of voucher that should be sent to inbox. |
- **version** | [**int**](../Model/.md)| Version of voucher that should be sent to inbox. | [optional]
- **comment** | [**string**](../Model/.md)| Description of why the voucher was rejected. This parameter is only used if the approval feature is enabled. | [optional]
+ **id** | **int**| ID of voucher that should be sent to inbox. |
+ **version** | **int**| Version of voucher that should be sent to inbox. | [optional]
+ **comment** | **string**| Description of why the voucher was rejected. This parameter is only used if the approval feature is enabled. | [optional]
 
 ### Return type
 
@@ -767,7 +807,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -776,10 +816,13 @@ Name | Type | Description  | Notes
 
 [BETA] Send voucher to ledger.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -794,7 +837,7 @@ $apiInstance = new Tripletex\Api\LedgervoucherApi(
 );
 $id = 56; // int | ID of voucher that should be sent to ledger.
 $version = 56; // int | Version of voucher that should be sent to ledger.
-$number = 56; // int | Voucher number to use. If omitted or 0 the system will assign the number.
+$number = 0; // int | Voucher number to use. If omitted or 0 the system will assign the number.
 
 try {
     $result = $apiInstance->sendToLedger($id, $version, $number);
@@ -809,9 +852,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| ID of voucher that should be sent to ledger. |
- **version** | [**int**](../Model/.md)| Version of voucher that should be sent to ledger. | [optional]
- **number** | [**int**](../Model/.md)| Voucher number to use. If omitted or 0 the system will assign the number. | [optional]
+ **id** | **int**| ID of voucher that should be sent to ledger. |
+ **version** | **int**| Version of voucher that should be sent to ledger. | [optional]
+ **number** | **int**| Voucher number to use. If omitted or 0 the system will assign the number. | [optional] [default to 0]
 
 ### Return type
 
@@ -824,7 +867,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -833,10 +876,13 @@ Name | Type | Description  | Notes
 
 Upload attachment to voucher. If the voucher already has an attachment the content will be appended to the existing attachment as new PDF page(s). Valid document formats are PDF, PNG, JPEG and TIFF. Non PDF formats will be converted to PDF. Send as multipart form.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -850,7 +896,7 @@ $apiInstance = new Tripletex\Api\LedgervoucherApi(
     $config
 );
 $voucher_id = 56; // int | Voucher ID to upload attachment to.
-$file = "file_example"; // \SplFileObject | 
+$file = "/path/to/file.txt"; // \SplFileObject | The file
 
 try {
     $apiInstance->uploadAttachment($voucher_id, $file);
@@ -864,8 +910,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **voucher_id** | [**int**](../Model/.md)| Voucher ID to upload attachment to. |
- **file** | **\SplFileObject****\SplFileObject**|  | [optional]
+ **voucher_id** | **int**| Voucher ID to upload attachment to. |
+ **file** | **\SplFileObject**| The file |
 
 ### Return type
 
@@ -887,10 +933,13 @@ void (empty response body)
 
 [DEPRECATED] Use POST ledger/voucher/{voucherId}/attachment instead.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -905,7 +954,7 @@ $apiInstance = new Tripletex\Api\LedgervoucherApi(
 );
 $voucher_id = 56; // int | Voucher ID to upload PDF to.
 $file_name = "file_name_example"; // string | File name to store the pdf under. Will not be the same as the filename on the file returned.
-$file = "file_example"; // \SplFileObject | 
+$file = "/path/to/file.txt"; // \SplFileObject | The file
 
 try {
     $apiInstance->uploadPdf($voucher_id, $file_name, $file);
@@ -919,9 +968,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **voucher_id** | [**int**](../Model/.md)| Voucher ID to upload PDF to. |
- **file_name** | [**string**](../Model/.md)| File name to store the pdf under. Will not be the same as the filename on the file returned. |
- **file** | **\SplFileObject****\SplFileObject**|  | [optional]
+ **voucher_id** | **int**| Voucher ID to upload PDF to. |
+ **file_name** | **string**| File name to store the pdf under. Will not be the same as the filename on the file returned. |
+ **file** | **\SplFileObject**| The file |
 
 ### Return type
 

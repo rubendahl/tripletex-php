@@ -1,6 +1,6 @@
 # Tripletex\TimesheetweekApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,15 +10,19 @@ Method | HTTP request | Description
 [**search**](TimesheetweekApi.md#search) | **GET** /timesheet/week | Find weekly status By ID, week/year combination, employeeId. or an approver
 [**unapprove**](TimesheetweekApi.md#unapprove) | **PUT** /timesheet/week/:unapprove | Unapprove week. By ID or (ISO-8601 week and employeeId combination).
 
+
 # **approve**
 > \Tripletex\Model\ResponseWrapperWeek approve($id, $employee_id, $week_year)
 
 Approve week. By ID or (ISO-8601 week and employeeId combination).
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -33,7 +37,7 @@ $apiInstance = new Tripletex\Api\TimesheetweekApi(
 );
 $id = 56; // int | Equals
 $employee_id = 56; // int | Equals
-$week_year = "week_year_example"; // string | ISO-8601 week-year
+$week_year = "\"2018-12\""; // string | ISO-8601 week-year
 
 try {
     $result = $apiInstance->approve($id, $employee_id, $week_year);
@@ -48,9 +52,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Equals | [optional]
- **employee_id** | [**int**](../Model/.md)| Equals | [optional]
- **week_year** | [**string**](../Model/.md)| ISO-8601 week-year | [optional]
+ **id** | **int**| Equals | [optional]
+ **employee_id** | **int**| Equals | [optional]
+ **week_year** | **string**| ISO-8601 week-year | [optional]
 
 ### Return type
 
@@ -63,7 +67,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -72,10 +76,13 @@ Name | Type | Description  | Notes
 
 Complete week. By ID or (ISO-8601 week and employeeId combination).
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -90,7 +97,7 @@ $apiInstance = new Tripletex\Api\TimesheetweekApi(
 );
 $id = 56; // int | Equals
 $employee_id = 56; // int | Equals
-$week_year = "week_year_example"; // string | ISO-8601 week-year
+$week_year = "\"2018-12\""; // string | ISO-8601 week-year
 
 try {
     $result = $apiInstance->complete($id, $employee_id, $week_year);
@@ -105,9 +112,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Equals | [optional]
- **employee_id** | [**int**](../Model/.md)| Equals | [optional]
- **week_year** | [**string**](../Model/.md)| ISO-8601 week-year | [optional]
+ **id** | **int**| Equals | [optional]
+ **employee_id** | **int**| Equals | [optional]
+ **week_year** | **string**| ISO-8601 week-year | [optional]
 
 ### Return type
 
@@ -120,7 +127,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -129,10 +136,13 @@ Name | Type | Description  | Notes
 
 Reopen week. By ID or (ISO-8601 week and employeeId combination).
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -147,7 +157,7 @@ $apiInstance = new Tripletex\Api\TimesheetweekApi(
 );
 $id = 56; // int | Equals
 $employee_id = 56; // int | Equals
-$week_year = "week_year_example"; // string | ISO-8601 week-year
+$week_year = "\"2018-12\""; // string | ISO-8601 week-year
 
 try {
     $result = $apiInstance->reopen($id, $employee_id, $week_year);
@@ -162,9 +172,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Equals | [optional]
- **employee_id** | [**int**](../Model/.md)| Equals | [optional]
- **week_year** | [**string**](../Model/.md)| ISO-8601 week-year | [optional]
+ **id** | **int**| Equals | [optional]
+ **employee_id** | **int**| Equals | [optional]
+ **week_year** | **string**| ISO-8601 week-year | [optional]
 
 ### Return type
 
@@ -177,7 +187,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -186,10 +196,13 @@ Name | Type | Description  | Notes
 
 Find weekly status By ID, week/year combination, employeeId. or an approver
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -204,10 +217,10 @@ $apiInstance = new Tripletex\Api\TimesheetweekApi(
 );
 $ids = "ids_example"; // string | List of IDs
 $employee_ids = "employee_ids_example"; // string | List of IDs
-$week_year = "week_year_example"; // string | ISO-8601 week-year
+$week_year = "\"2018-12\""; // string | ISO-8601 week-year
 $approved_by = 56; // int | Equals
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -224,14 +237,14 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | [**string**](../Model/.md)| List of IDs | [optional]
- **employee_ids** | [**string**](../Model/.md)| List of IDs | [optional]
- **week_year** | [**string**](../Model/.md)| ISO-8601 week-year | [optional]
- **approved_by** | [**int**](../Model/.md)| Equals | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **ids** | **string**| List of IDs | [optional]
+ **employee_ids** | **string**| List of IDs | [optional]
+ **week_year** | **string**| ISO-8601 week-year | [optional]
+ **approved_by** | **int**| Equals | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -244,7 +257,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -253,10 +266,13 @@ Name | Type | Description  | Notes
 
 Unapprove week. By ID or (ISO-8601 week and employeeId combination).
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -271,7 +287,7 @@ $apiInstance = new Tripletex\Api\TimesheetweekApi(
 );
 $id = 56; // int | Equals
 $employee_id = 56; // int | Equals
-$week_year = "week_year_example"; // string | ISO-8601 week-year
+$week_year = "\"2018-12\""; // string | ISO-8601 week-year
 
 try {
     $result = $apiInstance->unapprove($id, $employee_id, $week_year);
@@ -286,9 +302,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Equals | [optional]
- **employee_id** | [**int**](../Model/.md)| Equals | [optional]
- **week_year** | [**string**](../Model/.md)| ISO-8601 week-year | [optional]
+ **id** | **int**| Equals | [optional]
+ **employee_id** | **int**| Equals | [optional]
+ **week_year** | **string**| ISO-8601 week-year | [optional]
 
 ### Return type
 
@@ -301,7 +317,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

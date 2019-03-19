@@ -18,10 +18,10 @@ Name | Type | Description | Notes
 **product** | [**\Tripletex\Model\Product**](Product.md) |  | [optional] 
 **department** | [**\Tripletex\Model\Department**](Department.md) |  | [optional] 
 **vat_type** | [**\Tripletex\Model\VatType**](VatType.md) |  | [optional] 
-**amount** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**amount_currency** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**amount_gross** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**amount_gross_currency** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
+**amount** | **float** |  | [optional] 
+**amount_currency** | **float** |  | [optional] 
+**amount_gross** | **float** |  | [optional] 
+**amount_gross_currency** | **float** |  | [optional] 
 **currency** | [**\Tripletex\Model\Currency**](Currency.md) |  | [optional] 
 **close_group** | [**\Tripletex\Model\CloseGroup**](CloseGroup.md) |  | [optional] 
 **invoice_number** | **string** |  | [optional] 
@@ -30,4 +30,5 @@ Name | Type | Description | Notes
 **system_generated** | **bool** |  | [optional] [default to false]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

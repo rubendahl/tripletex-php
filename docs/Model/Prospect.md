@@ -17,13 +17,14 @@ Name | Type | Description | Notes
 **closed_date** | **string** |  | [optional] 
 **competitor** | **string** |  | [optional] 
 **prospect_type** | **int** |  | [optional] 
-**project** | [**\Tripletex\Model\Project**](Project.md) |  | [optional] 
-**project_offer** | [**\Tripletex\Model\Project**](Project.md) |  | [optional] 
+**project** | [**\Tripletex\Model\Project**](Project.md) | The project connected to this prospect. | [optional] 
+**project_offer** | [**\Tripletex\Model\Project**](Project.md) | The project offer connected to this prospect. | [optional] 
 **final_income_date** | **string** | The estimated start date for income on the prospect. | [optional] 
-**final_initial_value** | [**BigDecimal**](BigDecimal.md) | The estimated startup fee on this prospect. | [optional] 
-**final_monthly_value** | [**BigDecimal**](BigDecimal.md) | The estimated monthly fee on this prospect. | [optional] 
-**final_additional_services_value** | [**BigDecimal**](BigDecimal.md) | Tripletex specific. | [optional] 
-**total_value** | [**BigDecimal**](BigDecimal.md) | The estimated total fee on this prospect. | [optional] 
+**final_initial_value** | **float** | The estimated startup fee on this prospect. | [optional] 
+**final_monthly_value** | **float** | The estimated monthly fee on this prospect. | [optional] 
+**final_additional_services_value** | **float** | Tripletex specific. | [optional] 
+**total_value** | **float** | The estimated total fee on this prospect. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

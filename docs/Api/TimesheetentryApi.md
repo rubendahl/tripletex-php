@@ -1,6 +1,6 @@
 # Tripletex\TimesheetentryApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,15 +15,19 @@ Method | HTTP request | Description
 [**putList**](TimesheetentryApi.md#putList) | **PUT** /timesheet/entry/list | Update timesheet entry. Multiple objects for different users can be sent in the same request.
 [**search**](TimesheetentryApi.md#search) | **GET** /timesheet/entry | Find timesheet entry corresponding with sent data.
 
+
 # **delete**
 > delete($id, $version)
 
 Delete timesheet entry by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -51,8 +55,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **version** | [**int**](../Model/.md)| Number of current version | [optional]
+ **id** | **int**| Element ID |
+ **version** | **int**| Number of current version | [optional]
 
 ### Return type
 
@@ -74,10 +78,13 @@ void (empty response body)
 
 Find timesheet entry by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -106,8 +113,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **int**| Element ID |
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -120,7 +127,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -129,10 +136,13 @@ Name | Type | Description  | Notes
 
 Find recently used timesheet activities.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -147,8 +157,8 @@ $apiInstance = new Tripletex\Api\TimesheetentryApi(
 );
 $project_id = 56; // int | ID of project to find activities for
 $employee_id = 56; // int | ID of employee to find activities for. Defaults to ID of token owner.
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -165,12 +175,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **project_id** | [**int**](../Model/.md)| ID of project to find activities for |
- **employee_id** | [**int**](../Model/.md)| ID of employee to find activities for. Defaults to ID of token owner. | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **project_id** | **int**| ID of project to find activities for |
+ **employee_id** | **int**| ID of employee to find activities for. Defaults to ID of token owner. | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -183,7 +193,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -192,10 +202,13 @@ Name | Type | Description  | Notes
 
 Find projects with recent activities (timesheet entry registered).
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -209,8 +222,8 @@ $apiInstance = new Tripletex\Api\TimesheetentryApi(
     $config
 );
 $employee_id = 56; // int | ID of employee with recent project hours Defaults to ID of token owner.
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -227,11 +240,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **employee_id** | [**int**](../Model/.md)| ID of employee with recent project hours Defaults to ID of token owner. | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **employee_id** | **int**| ID of employee with recent project hours Defaults to ID of token owner. | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -244,7 +257,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -253,10 +266,13 @@ Name | Type | Description  | Notes
 
 Find total hours registered on an employee in a specific period.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -287,10 +303,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **employee_id** | [**int**](../Model/.md)| ID of employee to find hours for. Defaults to ID of token owner. | [optional]
- **start_date** | [**string**](../Model/.md)| Format is yyyy-MM-dd (from and incl.). Defaults to today. | [optional]
- **end_date** | [**string**](../Model/.md)| Format is yyyy-MM-dd (to and excl.). Defaults to tomorrow. | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **employee_id** | **int**| ID of employee to find hours for. Defaults to ID of token owner. | [optional]
+ **start_date** | **string**| Format is yyyy-MM-dd (from and incl.). Defaults to today. | [optional]
+ **end_date** | **string**| Format is yyyy-MM-dd (to and excl.). Defaults to tomorrow. | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -303,7 +319,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -312,10 +328,13 @@ Name | Type | Description  | Notes
 
 Add new timesheet entry. Only one entry per employee/date/activity/project combination is supported.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -356,7 +375,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -365,10 +384,13 @@ Name | Type | Description  | Notes
 
 Add new timesheet entry. Multiple objects for several users can be sent in the same request.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -409,7 +431,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -418,10 +440,13 @@ Name | Type | Description  | Notes
 
 Update timesheet entry by ID. Note: Timesheet entry object fields which are present but not set, or set to 0, will be nulled.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -450,7 +475,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
+ **id** | **int**| Element ID |
  **body** | [**\Tripletex\Model\TimesheetEntry**](../Model/TimesheetEntry.md)| Partial object describing what should be updated | [optional]
 
 ### Return type
@@ -464,7 +489,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -473,10 +498,13 @@ Name | Type | Description  | Notes
 
 Update timesheet entry. Multiple objects for different users can be sent in the same request.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -517,7 +545,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -526,10 +554,13 @@ Name | Type | Description  | Notes
 
 Find timesheet entry corresponding with sent data.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -549,8 +580,8 @@ $employee_id = "employee_id_example"; // string | List of IDs
 $project_id = "project_id_example"; // string | List of IDs
 $activity_id = "activity_id_example"; // string | List of IDs
 $comment = "comment_example"; // string | Containing
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -567,17 +598,17 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **date_from** | [**string**](../Model/.md)| From and including |
- **date_to** | [**string**](../Model/.md)| To and excluding |
- **id** | [**string**](../Model/.md)| List of IDs | [optional]
- **employee_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **project_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **activity_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **comment** | [**string**](../Model/.md)| Containing | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **date_from** | **string**| From and including |
+ **date_to** | **string**| To and excluding |
+ **id** | **string**| List of IDs | [optional]
+ **employee_id** | **string**| List of IDs | [optional]
+ **project_id** | **string**| List of IDs | [optional]
+ **activity_id** | **string**| List of IDs | [optional]
+ **comment** | **string**| Containing | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -590,7 +621,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

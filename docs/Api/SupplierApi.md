@@ -1,6 +1,6 @@
 # Tripletex\SupplierApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,15 +11,19 @@ Method | HTTP request | Description
 [**putList**](SupplierApi.md#putList) | **PUT** /supplier/list | [BETA] Update multiple suppliers. Addresses can also be updated.
 [**search**](SupplierApi.md#search) | **GET** /supplier | Find suppliers corresponding with sent data.
 
+
 # **get**
 > \Tripletex\Model\ResponseWrapperSupplier get($id, $fields)
 
 Get supplier by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -48,8 +52,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **int**| Element ID |
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -62,7 +66,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -71,10 +75,13 @@ Name | Type | Description  | Notes
 
 Create supplier. Related supplier addresses may also be created.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -115,7 +122,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -124,10 +131,13 @@ Name | Type | Description  | Notes
 
 [BETA] Create multiple suppliers. Related supplier addresses may also be created.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -168,7 +178,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -177,10 +187,13 @@ Name | Type | Description  | Notes
 
 Update supplier.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -209,7 +222,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
+ **id** | **int**| Element ID |
  **body** | [**\Tripletex\Model\Supplier**](../Model/Supplier.md)| Partial object describing what should be updated | [optional]
 
 ### Return type
@@ -223,7 +236,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -232,10 +245,13 @@ Name | Type | Description  | Notes
 
 [BETA] Update multiple suppliers. Addresses can also be updated.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -276,7 +292,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -285,10 +301,13 @@ Name | Type | Description  | Notes
 
 Find suppliers corresponding with sent data.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -306,13 +325,13 @@ $supplier_number = "supplier_number_example"; // string | List of IDs
 $organization_number = "organization_number_example"; // string | Equals
 $email = "email_example"; // string | Equals
 $invoice_email = "invoice_email_example"; // string | Equals
-$is_inactive = True; // bool | Equals
+$is_inactive = false; // bool | Equals
 $account_manager_id = "account_manager_id_example"; // string | List of IDs
 $changed_since = "changed_since_example"; // string | Only return elements that have changed since this date and time
-$is_wholesaler = True; // bool | Equals
-$show_products = True; // bool | Equals
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$is_wholesaler = true; // bool | Equals
+$show_products = true; // bool | Equals
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -329,20 +348,20 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**string**](../Model/.md)| List of IDs | [optional]
- **supplier_number** | [**string**](../Model/.md)| List of IDs | [optional]
- **organization_number** | [**string**](../Model/.md)| Equals | [optional]
- **email** | [**string**](../Model/.md)| Equals | [optional]
- **invoice_email** | [**string**](../Model/.md)| Equals | [optional]
- **is_inactive** | [**bool**](../Model/.md)| Equals | [optional]
- **account_manager_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **changed_since** | [**string**](../Model/.md)| Only return elements that have changed since this date and time | [optional]
- **is_wholesaler** | [**bool**](../Model/.md)| Equals | [optional]
- **show_products** | [**bool**](../Model/.md)| Equals | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **string**| List of IDs | [optional]
+ **supplier_number** | **string**| List of IDs | [optional]
+ **organization_number** | **string**| Equals | [optional]
+ **email** | **string**| Equals | [optional]
+ **invoice_email** | **string**| Equals | [optional]
+ **is_inactive** | **bool**| Equals | [optional] [default to false]
+ **account_manager_id** | **string**| List of IDs | [optional]
+ **changed_since** | **string**| Only return elements that have changed since this date and time | [optional]
+ **is_wholesaler** | **bool**| Equals | [optional]
+ **show_products** | **bool**| Equals | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -355,7 +374,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

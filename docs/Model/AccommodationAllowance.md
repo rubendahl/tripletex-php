@@ -14,8 +14,9 @@ Name | Type | Description | Notes
 **location** | **string** |  | 
 **address** | **string** |  | [optional] 
 **count** | **int** |  | [optional] 
-**rate** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**amount** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
+**rate** | **float** |  | [optional] 
+**amount** | **float** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

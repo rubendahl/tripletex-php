@@ -1,6 +1,6 @@
 # Tripletex\EmployeeApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,15 +10,19 @@ Method | HTTP request | Description
 [**put**](EmployeeApi.md#put) | **PUT** /employee/{id} | Update employee.
 [**search**](EmployeeApi.md#search) | **GET** /employee | Find employees corresponding with sent data.
 
+
 # **get**
 > \Tripletex\Model\ResponseWrapperEmployee get($id, $fields)
 
 Get employee by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -47,8 +51,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **int**| Element ID |
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -61,7 +65,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -70,10 +74,13 @@ Name | Type | Description  | Notes
 
 [BETA] Create one employee.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -114,7 +121,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -123,10 +130,13 @@ Name | Type | Description  | Notes
 
 [BETA] Create several employees.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -167,7 +177,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -176,10 +186,13 @@ Name | Type | Description  | Notes
 
 Update employee.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -208,7 +221,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
+ **id** | **int**| Element ID |
  **body** | [**\Tripletex\Model\Employee**](../Model/Employee.md)| Partial object describing what should be updated | [optional]
 
 ### Return type
@@ -222,7 +235,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -231,10 +244,13 @@ Name | Type | Description  | Notes
 
 Find employees corresponding with sent data.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -251,12 +267,12 @@ $id = "id_example"; // string | List of IDs
 $first_name = "first_name_example"; // string | Containing
 $last_name = "last_name_example"; // string | Containing
 $employee_number = "employee_number_example"; // string | Containing
-$allow_information_registration = True; // bool | Equals
-$include_contacts = True; // bool | Equals
+$allow_information_registration = true; // bool | Equals
+$include_contacts = false; // bool | Equals
 $department_id = "department_id_example"; // string | List of IDs
-$only_project_managers = True; // bool | Equals
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$only_project_managers = true; // bool | Equals
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -273,18 +289,18 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**string**](../Model/.md)| List of IDs | [optional]
- **first_name** | [**string**](../Model/.md)| Containing | [optional]
- **last_name** | [**string**](../Model/.md)| Containing | [optional]
- **employee_number** | [**string**](../Model/.md)| Containing | [optional]
- **allow_information_registration** | [**bool**](../Model/.md)| Equals | [optional]
- **include_contacts** | [**bool**](../Model/.md)| Equals | [optional]
- **department_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **only_project_managers** | [**bool**](../Model/.md)| Equals | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **string**| List of IDs | [optional]
+ **first_name** | **string**| Containing | [optional]
+ **last_name** | **string**| Containing | [optional]
+ **employee_number** | **string**| Containing | [optional]
+ **allow_information_registration** | **bool**| Equals | [optional]
+ **include_contacts** | **bool**| Equals | [optional] [default to false]
+ **department_id** | **string**| List of IDs | [optional]
+ **only_project_managers** | **bool**| Equals | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -297,7 +313,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

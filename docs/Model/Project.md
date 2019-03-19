@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **main_project** | [**\Tripletex\Model\Project**](Project.md) |  | [optional] 
 **start_date** | **string** |  | 
 **end_date** | **string** |  | [optional] 
-**customer** | [**\Tripletex\Model\Customer**](Customer.md) |  | [optional] 
+**customer** | [**\Tripletex\Model\Customer**](Customer.md) | The project&#39;s customer | [optional] 
 **is_closed** | **bool** |  | [optional] [default to false]
 **is_ready_for_invoicing** | **bool** |  | [optional] [default to false]
 **is_internal** | **bool** | Must be set to true. | [default to false]
@@ -25,9 +25,10 @@ Name | Type | Description | Notes
 **delivery_address** | [**\Tripletex\Model\Address**](Address.md) |  | [optional] 
 **display_name_format** | **string** | Defines project name presentation in overviews. | [optional] 
 **external_accounts_number** | **string** |  | [optional] 
-**discount_percentage** | [**BigDecimal**](BigDecimal.md) | Project discount percentage. | [optional] 
+**discount_percentage** | **float** | Project discount percentage. | [optional] 
 **order_lines** | [**\Tripletex\Model\ProjectOrderLine[]**](ProjectOrderLine.md) | Order lines tied to the order | [optional] 
 **participants** | [**\Tripletex\Model\ProjectParticipant[]**](ProjectParticipant.md) | Link to individual project participants. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

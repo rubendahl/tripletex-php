@@ -1,21 +1,25 @@
 # Tripletex\LedgeraccountingPeriodApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get**](LedgeraccountingPeriodApi.md#get) | **GET** /ledger/accountingPeriod/{id} | Get accounting period by ID.
 [**search**](LedgeraccountingPeriodApi.md#search) | **GET** /ledger/accountingPeriod | Find accounting periods corresponding with sent data.
 
+
 # **get**
 > \Tripletex\Model\ResponseWrapperAccountingPeriod get($id, $fields)
 
 Get accounting period by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -44,8 +48,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **int**| Element ID |
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -58,7 +62,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -67,10 +71,13 @@ Name | Type | Description  | Notes
 
 Find accounting periods corresponding with sent data.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -90,8 +97,8 @@ $start_from = "start_from_example"; // string | From and including
 $start_to = "start_to_example"; // string | To and excluding
 $end_from = "end_from_example"; // string | From and including
 $end_to = "end_to_example"; // string | To and excluding
-$count = 56; // int | Number of elements to return
-$from = 56; // int | From index
+$count = 1400; // int | Number of elements to return
+$from = 0; // int | From index
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -108,17 +115,17 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**string**](../Model/.md)| List of IDs | [optional]
- **number_from** | [**int**](../Model/.md)| From and including | [optional]
- **number_to** | [**int**](../Model/.md)| To and excluding | [optional]
- **start_from** | [**string**](../Model/.md)| From and including | [optional]
- **start_to** | [**string**](../Model/.md)| To and excluding | [optional]
- **end_from** | [**string**](../Model/.md)| From and including | [optional]
- **end_to** | [**string**](../Model/.md)| To and excluding | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **string**| List of IDs | [optional]
+ **number_from** | **int**| From and including | [optional]
+ **number_to** | **int**| To and excluding | [optional]
+ **start_from** | **string**| From and including | [optional]
+ **start_to** | **string**| To and excluding | [optional]
+ **end_from** | **string**| From and including | [optional]
+ **end_to** | **string**| To and excluding | [optional]
+ **count** | **int**| Number of elements to return | [optional] [default to 1400]
+ **from** | **int**| From index | [optional] [default to 0]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -131,7 +138,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

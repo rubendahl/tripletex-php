@@ -1,6 +1,6 @@
 # Tripletex\ProjectApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -15,15 +15,19 @@ Method | HTTP request | Description
 [**putList**](ProjectApi.md#putList) | **PUT** /project/list | [BETA] Update multiple projects.
 [**search**](ProjectApi.md#search) | **GET** /project | Find projects corresponding with sent data.
 
+
 # **delete**
 > delete($id)
 
 [BETA] Delete project.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -50,7 +54,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
+ **id** | **int**| Element ID |
 
 ### Return type
 
@@ -72,10 +76,13 @@ void (empty response body)
 
 [BETA] Delete projects.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -102,7 +109,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **ids** | [**string**](../Model/.md)| ID of the elements |
+ **ids** | **string**| ID of the elements |
 
 ### Return type
 
@@ -124,10 +131,13 @@ void (empty response body)
 
 [BETA] Delete multiple projects.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -176,10 +186,13 @@ void (empty response body)
 
 Find project by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -208,8 +221,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **int**| Element ID |
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -222,7 +235,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -231,10 +244,13 @@ Name | Type | Description  | Notes
 
 Find projects applicable for time sheet registration on a specific day.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -249,8 +265,8 @@ $apiInstance = new Tripletex\Api\ProjectApi(
 );
 $employee_id = 56; // int | Employee ID. Defaults to ID of token owner.
 $date = "date_example"; // string | yyyy-MM-dd. Defaults to today.
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -267,12 +283,12 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **employee_id** | [**int**](../Model/.md)| Employee ID. Defaults to ID of token owner. | [optional]
- **date** | [**string**](../Model/.md)| yyyy-MM-dd. Defaults to today. | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **employee_id** | **int**| Employee ID. Defaults to ID of token owner. | [optional]
+ **date** | **string**| yyyy-MM-dd. Defaults to today. | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -285,7 +301,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -294,10 +310,13 @@ Name | Type | Description  | Notes
 
 [BETA] Add new project.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -338,7 +357,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -347,10 +366,13 @@ Name | Type | Description  | Notes
 
 [BETA] Register new projects. Multiple projects for different users can be sent in the same request.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -391,7 +413,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -400,10 +422,13 @@ Name | Type | Description  | Notes
 
 [BETA] Update project.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -432,7 +457,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
+ **id** | **int**| Element ID |
  **body** | [**\Tripletex\Model\Project**](../Model/Project.md)| Partial object describing what should be updated | [optional]
 
 ### Return type
@@ -446,7 +471,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -455,10 +480,13 @@ Name | Type | Description  | Notes
 
 [BETA] Update multiple projects.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -499,7 +527,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -508,10 +536,13 @@ Name | Type | Description  | Notes
 
 Find projects corresponding with sent data.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -527,7 +558,7 @@ $apiInstance = new Tripletex\Api\ProjectApi(
 $id = "id_example"; // string | List of IDs
 $name = "name_example"; // string | Containing
 $number = "number_example"; // string | Equals
-$is_offer = True; // bool | Equals
+$is_offer = true; // bool | Equals
 $project_manager_id = "project_manager_id_example"; // string | List of IDs
 $employee_in_project_id = "employee_in_project_id_example"; // string | List of IDs
 $department_id = "department_id_example"; // string | List of IDs
@@ -535,11 +566,11 @@ $start_date_from = "start_date_from_example"; // string | From and including
 $start_date_to = "start_date_to_example"; // string | To and excluding
 $end_date_from = "end_date_from_example"; // string | From and including
 $end_date_to = "end_date_to_example"; // string | To and excluding
-$is_closed = True; // bool | Equals
+$is_closed = true; // bool | Equals
 $customer_id = "customer_id_example"; // string | Equals
 $external_accounts_number = "external_accounts_number_example"; // string | Containing
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -556,24 +587,24 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**string**](../Model/.md)| List of IDs | [optional]
- **name** | [**string**](../Model/.md)| Containing | [optional]
- **number** | [**string**](../Model/.md)| Equals | [optional]
- **is_offer** | [**bool**](../Model/.md)| Equals | [optional]
- **project_manager_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **employee_in_project_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **department_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **start_date_from** | [**string**](../Model/.md)| From and including | [optional]
- **start_date_to** | [**string**](../Model/.md)| To and excluding | [optional]
- **end_date_from** | [**string**](../Model/.md)| From and including | [optional]
- **end_date_to** | [**string**](../Model/.md)| To and excluding | [optional]
- **is_closed** | [**bool**](../Model/.md)| Equals | [optional]
- **customer_id** | [**string**](../Model/.md)| Equals | [optional]
- **external_accounts_number** | [**string**](../Model/.md)| Containing | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **string**| List of IDs | [optional]
+ **name** | **string**| Containing | [optional]
+ **number** | **string**| Equals | [optional]
+ **is_offer** | **bool**| Equals | [optional]
+ **project_manager_id** | **string**| List of IDs | [optional]
+ **employee_in_project_id** | **string**| List of IDs | [optional]
+ **department_id** | **string**| List of IDs | [optional]
+ **start_date_from** | **string**| From and including | [optional]
+ **start_date_to** | **string**| To and excluding | [optional]
+ **end_date_from** | **string**| From and including | [optional]
+ **end_date_to** | **string**| To and excluding | [optional]
+ **is_closed** | **bool**| Equals | [optional]
+ **customer_id** | **string**| Equals | [optional]
+ **external_accounts_number** | **string**| Containing | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -586,7 +617,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

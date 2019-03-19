@@ -1,6 +1,6 @@
 # Tripletex\SalarytransactionApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,15 +8,19 @@ Method | HTTP request | Description
 [**get**](SalarytransactionApi.md#get) | **GET** /salary/transaction/{id} | [BETA] Find salary transaction by ID.
 [**post**](SalarytransactionApi.md#post) | **POST** /salary/transaction | [BETA] Create a new salary transaction.
 
+
 # **delete**
 > delete($id)
 
 [BETA] Delete salary transaction by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -43,7 +47,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
+ **id** | **int**| Element ID |
 
 ### Return type
 
@@ -65,10 +69,13 @@ void (empty response body)
 
 [BETA] Find salary transaction by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -97,8 +104,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **int**| Element ID |
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -111,7 +118,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -120,10 +127,13 @@ Name | Type | Description  | Notes
 
 [BETA] Create a new salary transaction.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -137,7 +147,7 @@ $apiInstance = new Tripletex\Api\SalarytransactionApi(
     $config
 );
 $body = new \Tripletex\Model\SalaryTransaction(); // \Tripletex\Model\SalaryTransaction | JSON representing the new object to be created. Should not have ID and version set.
-$generate_tax_deduction = True; // bool | Generate tax deduction
+$generate_tax_deduction = false; // bool | Generate tax deduction
 
 try {
     $result = $apiInstance->post($body, $generate_tax_deduction);
@@ -153,7 +163,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | [**\Tripletex\Model\SalaryTransaction**](../Model/SalaryTransaction.md)| JSON representing the new object to be created. Should not have ID and version set. | [optional]
- **generate_tax_deduction** | [**bool**](../Model/.md)| Generate tax deduction | [optional]
+ **generate_tax_deduction** | **bool**| Generate tax deduction | [optional] [default to false]
 
 ### Return type
 
@@ -166,7 +176,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

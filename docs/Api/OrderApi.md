@@ -1,6 +1,6 @@
 # Tripletex\OrderApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -10,15 +10,19 @@ Method | HTTP request | Description
 [**put**](OrderApi.md#put) | **PUT** /order/{id} | Update order.
 [**search**](OrderApi.md#search) | **GET** /order | Find orders corresponding with sent data.
 
+
 # **get**
 > \Tripletex\Model\ResponseWrapperOrder get($id, $fields)
 
 Get order by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -47,8 +51,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **int**| Element ID |
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -61,7 +65,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -70,10 +74,13 @@ Name | Type | Description  | Notes
 
 Create new invoice from order.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -88,9 +95,9 @@ $apiInstance = new Tripletex\Api\OrderApi(
 );
 $id = 56; // int | ID of order to invoice.
 $invoice_date = "invoice_date_example"; // string | The invoice date
-$send_to_customer = True; // bool | Send invoice to customer
+$send_to_customer = true; // bool | Send invoice to customer
 $payment_type_id = 56; // int | Payment type to register prepayment of the invoice. paymentTypeId and paidAmount are optional, but both must be provided if the invoice has already been paid.
-$paid_amount = 3.4; // float | Paid amount to register prepayment of the invoice, in invoice currency. paymentTypeId and paidAmount are optional, but both must be provided if the invoice has already been paid.
+$paid_amount = 8.14; // float | Paid amount to register prepayment of the invoice, in invoice currency. paymentTypeId and paidAmount are optional, but both must be provided if the invoice has already been paid.
 
 try {
     $result = $apiInstance->invoice($id, $invoice_date, $send_to_customer, $payment_type_id, $paid_amount);
@@ -105,11 +112,11 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| ID of order to invoice. |
- **invoice_date** | [**string**](../Model/.md)| The invoice date |
- **send_to_customer** | [**bool**](../Model/.md)| Send invoice to customer | [optional]
- **payment_type_id** | [**int**](../Model/.md)| Payment type to register prepayment of the invoice. paymentTypeId and paidAmount are optional, but both must be provided if the invoice has already been paid. | [optional]
- **paid_amount** | [**float**](../Model/.md)| Paid amount to register prepayment of the invoice, in invoice currency. paymentTypeId and paidAmount are optional, but both must be provided if the invoice has already been paid. | [optional]
+ **id** | **int**| ID of order to invoice. |
+ **invoice_date** | **string**| The invoice date |
+ **send_to_customer** | **bool**| Send invoice to customer | [optional] [default to true]
+ **payment_type_id** | **int**| Payment type to register prepayment of the invoice. paymentTypeId and paidAmount are optional, but both must be provided if the invoice has already been paid. | [optional]
+ **paid_amount** | **float**| Paid amount to register prepayment of the invoice, in invoice currency. paymentTypeId and paidAmount are optional, but both must be provided if the invoice has already been paid. | [optional]
 
 ### Return type
 
@@ -122,7 +129,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -131,10 +138,13 @@ Name | Type | Description  | Notes
 
 Create order.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -175,7 +185,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -184,10 +194,13 @@ Name | Type | Description  | Notes
 
 Update order.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -216,7 +229,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
+ **id** | **int**| Element ID |
  **body** | [**\Tripletex\Model\Order**](../Model/Order.md)| Partial object describing what should be updated | [optional]
 
 ### Return type
@@ -230,7 +243,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/json; charset=utf-8
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -239,10 +252,13 @@ Name | Type | Description  | Notes
 
 Find orders corresponding with sent data.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -260,9 +276,9 @@ $order_date_to = "order_date_to_example"; // string | To and excluding
 $id = "id_example"; // string | List of IDs
 $number = "number_example"; // string | Equals
 $customer_id = "customer_id_example"; // string | List of IDs
-$is_closed = True; // bool | Equals
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$is_closed = true; // bool | Equals
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -279,16 +295,16 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **order_date_from** | [**string**](../Model/.md)| From and including |
- **order_date_to** | [**string**](../Model/.md)| To and excluding |
- **id** | [**string**](../Model/.md)| List of IDs | [optional]
- **number** | [**string**](../Model/.md)| Equals | [optional]
- **customer_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **is_closed** | [**bool**](../Model/.md)| Equals | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **order_date_from** | **string**| From and including |
+ **order_date_to** | **string**| To and excluding |
+ **id** | **string**| List of IDs | [optional]
+ **number** | **string**| Equals | [optional]
+ **customer_id** | **string**| List of IDs | [optional]
+ **is_closed** | **bool**| Equals | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -301,7 +317,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

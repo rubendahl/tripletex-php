@@ -1,6 +1,6 @@
 # Tripletex\TokensessionApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,10 +8,13 @@ Method | HTTP request | Description
 [**delete**](TokensessionApi.md#delete) | **DELETE** /token/session/{token} | Delete session token.
 [**whoAmI**](TokensessionApi.md#whoAmI) | **GET** /token/session/&gt;whoAmI | Find information about the current user.
 
+
 # **create**
 > \Tripletex\Model\ResponseWrapperSessionToken create($consumer_token, $employee_token, $expiration_date)
 
 Create session token.
+
+
 
 ### Example
 ```php
@@ -40,9 +43,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **consumer_token** | [**string**](../Model/.md)| Token of the API consumer |
- **employee_token** | [**string**](../Model/.md)| The employees token |
- **expiration_date** | [**string**](../Model/.md)| Expiration date for the combined token |
+ **consumer_token** | **string**| Token of the API consumer |
+ **employee_token** | **string**| The employees token |
+ **expiration_date** | **string**| Expiration date for the combined token |
 
 ### Return type
 
@@ -55,7 +58,7 @@ No authorization required
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -64,10 +67,13 @@ No authorization required
 
 Delete session token.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -94,7 +100,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **token** | [**string**](../Model/.md)| The login token string to delete |
+ **token** | **string**| The login token string to delete |
 
 ### Return type
 
@@ -116,10 +122,13 @@ void (empty response body)
 
 Find information about the current user.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -147,7 +156,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -160,7 +169,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

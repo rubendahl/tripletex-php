@@ -26,9 +26,10 @@ Name | Type | Description | Notes
 **postal_address** | [**\Tripletex\Model\Address**](Address.md) |  | [optional] 
 **physical_address** | [**\Tripletex\Model\Address**](Address.md) |  | [optional] 
 **delivery_address** | [**\Tripletex\Model\Address**](Address.md) |  | [optional] 
-**category1** | [**\Tripletex\Model\CustomerCategory**](CustomerCategory.md) |  | [optional] 
-**category2** | [**\Tripletex\Model\CustomerCategory**](CustomerCategory.md) |  | [optional] 
-**category3** | [**\Tripletex\Model\CustomerCategory**](CustomerCategory.md) |  | [optional] 
+**category1** | [**\Tripletex\Model\CustomerCategory**](CustomerCategory.md) | Category 1 of this supplier | [optional] 
+**category2** | [**\Tripletex\Model\CustomerCategory**](CustomerCategory.md) | Category 2 of this supplier | [optional] 
+**category3** | [**\Tripletex\Model\CustomerCategory**](CustomerCategory.md) | Category 3 of this supplier | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

@@ -1,21 +1,25 @@
 # Tripletex\LedgerApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**openPost**](LedgerApi.md#openPost) | **GET** /ledger/openPost | Find open posts corresponding with sent data.
 [**search**](LedgerApi.md#search) | **GET** /ledger | Get ledger (hovedbok).
 
+
 # **openPost**
 > \Tripletex\Model\ListResponseLedgerAccount openPost($date, $account_id, $supplier_id, $customer_id, $employee_id, $department_id, $project_id, $product_id, $from, $count, $sorting, $fields)
 
 Find open posts corresponding with sent data.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -36,8 +40,8 @@ $employee_id = 56; // int | Element ID
 $department_id = 56; // int | Element ID
 $project_id = 56; // int | Element ID
 $product_id = 56; // int | Element ID
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -54,18 +58,18 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **date** | [**string**](../Model/.md)| Invoice date. Format is yyyy-MM-dd (to and excl.). |
- **account_id** | [**int**](../Model/.md)| Element ID | [optional]
- **supplier_id** | [**int**](../Model/.md)| Element ID | [optional]
- **customer_id** | [**int**](../Model/.md)| Element ID | [optional]
- **employee_id** | [**int**](../Model/.md)| Element ID | [optional]
- **department_id** | [**int**](../Model/.md)| Element ID | [optional]
- **project_id** | [**int**](../Model/.md)| Element ID | [optional]
- **product_id** | [**int**](../Model/.md)| Element ID | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **date** | **string**| Invoice date. Format is yyyy-MM-dd (to and excl.). |
+ **account_id** | **int**| Element ID | [optional]
+ **supplier_id** | **int**| Element ID | [optional]
+ **customer_id** | **int**| Element ID | [optional]
+ **employee_id** | **int**| Element ID | [optional]
+ **department_id** | **int**| Element ID | [optional]
+ **project_id** | **int**| Element ID | [optional]
+ **product_id** | **int**| Element ID | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -78,7 +82,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -87,10 +91,13 @@ Name | Type | Description  | Notes
 
 Get ledger (hovedbok).
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -113,8 +120,8 @@ $employee_id = 56; // int | Element ID
 $department_id = 56; // int | Element ID
 $project_id = 56; // int | Element ID
 $product_id = 56; // int | Element ID
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -131,20 +138,20 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **date_from** | [**string**](../Model/.md)| Format is yyyy-MM-dd (from and incl.). |
- **date_to** | [**string**](../Model/.md)| Format is yyyy-MM-dd (to and excl.). |
- **open_postings** | [**string**](../Model/.md)| Deprecated | [optional]
- **account_id** | [**int**](../Model/.md)| Element ID | [optional]
- **supplier_id** | [**int**](../Model/.md)| Element ID | [optional]
- **customer_id** | [**int**](../Model/.md)| Element ID | [optional]
- **employee_id** | [**int**](../Model/.md)| Element ID | [optional]
- **department_id** | [**int**](../Model/.md)| Element ID | [optional]
- **project_id** | [**int**](../Model/.md)| Element ID | [optional]
- **product_id** | [**int**](../Model/.md)| Element ID | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **date_from** | **string**| Format is yyyy-MM-dd (from and incl.). |
+ **date_to** | **string**| Format is yyyy-MM-dd (to and excl.). |
+ **open_postings** | **string**| Deprecated | [optional]
+ **account_id** | **int**| Element ID | [optional]
+ **supplier_id** | **int**| Element ID | [optional]
+ **customer_id** | **int**| Element ID | [optional]
+ **employee_id** | **int**| Element ID | [optional]
+ **department_id** | **int**| Element ID | [optional]
+ **project_id** | **int**| Element ID | [optional]
+ **product_id** | **int**| Element ID | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -157,7 +164,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

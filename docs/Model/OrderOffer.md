@@ -10,7 +10,8 @@ Name | Type | Description | Notes
 **number** | **string** |  | [optional] 
 **department** | [**\Tripletex\Model\Department**](Department.md) |  | [optional] 
 **offer_date** | **string** |  | [optional] 
-**customer** | [**\Tripletex\Model\Customer**](Customer.md) |  | [optional] 
+**customer** | [**\Tripletex\Model\Customer**](Customer.md) | The offer&#39;s customer | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

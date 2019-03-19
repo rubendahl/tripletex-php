@@ -7,11 +7,12 @@ Name | Type | Description | Notes
 **version** | **int** |  | [optional] 
 **changes** | [**\Tripletex\Model\Change[]**](Change.md) |  | [optional] 
 **url** | **string** |  | [optional] 
-**opening_balance_currency** | [**BigDecimal**](BigDecimal.md) | Opening balance on the account. | [optional] 
-**closing_balance_currency** | [**BigDecimal**](BigDecimal.md) | Closing balance on the account. | [optional] 
+**opening_balance_currency** | **float** | Opening balance on the account. | [optional] 
+**closing_balance_currency** | **float** | Closing balance on the account. | [optional] 
 **file_name** | **string** | Bank statement file name. | [optional] 
-**bank** | [**\Tripletex\Model\Bank**](Bank.md) |  | [optional] 
+**bank** | [**\Tripletex\Model\Bank**](Bank.md) | Bank | [optional] 
 **transactions** | [**\Tripletex\Model\BankTransaction[]**](BankTransaction.md) | Bank transactions tied to the bank statement | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

@@ -14,15 +14,16 @@ Name | Type | Description | Notes
 **payment_type** | [**\Tripletex\Model\TravelPaymentType**](TravelPaymentType.md) |  | 
 **category** | **string** |  | [optional] 
 **comments** | **string** |  | [optional] 
-**rate** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**amount_currency_inc_vat** | [**BigDecimal**](BigDecimal.md) |  | 
-**amount_nok_incl_vat** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**amount_nok_incl_vat_low** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**amount_nok_incl_vat_medium** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**amount_nok_incl_vat_high** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
+**rate** | **float** |  | [optional] 
+**amount_currency_inc_vat** | **float** |  | 
+**amount_nok_incl_vat** | **float** |  | [optional] 
+**amount_nok_incl_vat_low** | **float** |  | [optional] 
+**amount_nok_incl_vat_medium** | **float** |  | [optional] 
+**amount_nok_incl_vat_high** | **float** |  | [optional] 
 **is_paid_by_employee** | **bool** |  | [optional] [default to false]
 **is_chargeable** | **bool** |  | [optional] [default to false]
 **date** | **string** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

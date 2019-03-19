@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **address** | **string** |  | [optional] 
 **postal_code** | **string** |  | [optional] 
 **postal_area** | **string** |  | [optional] 
-**latitude** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**longitude** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
+**latitude** | **float** |  | [optional] 
+**longitude** | **float** |  | [optional] 
 **score** | **int** |  | [optional] 
 **sources** | **string[]** |  | [optional] 
 **firstname** | **string** |  | [optional] 
@@ -22,4 +22,5 @@ Name | Type | Description | Notes
 **reserved** | **bool** |  | [optional] [default to false]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

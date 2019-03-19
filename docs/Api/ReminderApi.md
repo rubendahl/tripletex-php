@@ -1,21 +1,25 @@
 # Tripletex\ReminderApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**get**](ReminderApi.md#get) | **GET** /reminder/{id} | Get reminder by ID.
 [**search**](ReminderApi.md#search) | **GET** /reminder | Find reminders corresponding with sent data.
 
+
 # **get**
 > \Tripletex\Model\ResponseWrapperReminder get($id, $fields)
 
 Get reminder by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -44,8 +48,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **int**| Element ID |
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -58,7 +62,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -67,10 +71,13 @@ Name | Type | Description  | Notes
 
 Find reminders corresponding with sent data.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -90,8 +97,8 @@ $term_of_payment_to = "term_of_payment_to_example"; // string | To and excluding
 $term_of_payment_from = "term_of_payment_from_example"; // string | From and including
 $invoice_id = 56; // int | Equals
 $customer_id = 56; // int | Equals
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -108,17 +115,17 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **date_from** | [**string**](../Model/.md)| From and including |
- **date_to** | [**string**](../Model/.md)| To and excluding |
- **id** | [**string**](../Model/.md)| List of IDs | [optional]
- **term_of_payment_to** | [**string**](../Model/.md)| To and excluding | [optional]
- **term_of_payment_from** | [**string**](../Model/.md)| From and including | [optional]
- **invoice_id** | [**int**](../Model/.md)| Equals | [optional]
- **customer_id** | [**int**](../Model/.md)| Equals | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **date_from** | **string**| From and including |
+ **date_to** | **string**| To and excluding |
+ **id** | **string**| List of IDs | [optional]
+ **term_of_payment_to** | **string**| To and excluding | [optional]
+ **term_of_payment_from** | **string**| From and including | [optional]
+ **invoice_id** | **int**| Equals | [optional]
+ **customer_id** | **int**| Equals | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -131,7 +138,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

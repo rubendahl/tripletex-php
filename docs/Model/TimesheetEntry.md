@@ -18,8 +18,9 @@ Name | Type | Description | Notes
 **locked** | **bool** | Indicates if the hour can be changed. | [optional] [default to false]
 **chargeable** | **bool** |  | [optional] [default to false]
 **invoice** | [**\Tripletex\Model\Invoice**](Invoice.md) |  | [optional] 
-**hourly_rate** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**hourly_cost** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
+**hourly_rate** | **float** |  | [optional] 
+**hourly_cost** | **float** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

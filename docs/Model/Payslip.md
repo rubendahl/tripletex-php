@@ -13,10 +13,11 @@ Name | Type | Description | Notes
 **year** | **int** |  | [optional] 
 **month** | **int** |  | [optional] 
 **specifications** | [**\Tripletex\Model\SalarySpecification[]**](SalarySpecification.md) | Link to salary specifications. | [optional] 
-**vacation_allowance_amount** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**gross_amount** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**amount** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
+**vacation_allowance_amount** | **float** |  | [optional] 
+**gross_amount** | **float** |  | [optional] 
+**amount** | **float** |  | [optional] 
 **number** | **int** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

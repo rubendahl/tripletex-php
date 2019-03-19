@@ -14,11 +14,12 @@
  *
  * The Tripletex API is a **RESTful API**, which does not implement PATCH, but uses a PUT with optional fields.  **Actions** or commands are represented in our RESTful path with a prefixed `:`. Example: `/v2/hours/123/:approve`.  **Summaries** or aggregated results are represented in our RESTful path with a prefixed <code>&gt;</code>. Example: <code>/v2/hours/&gt;thisWeeksBillables</code>.  **\"requestID\"** is a key found in all validation and error responses. If additional log information is absolutely necessary, our support division can locate the key value.  **Download** the [swagger.json](/v2/swagger.json) file [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) to [generate code](https://github.com/swagger-api/swagger-codegen). This document was generated from the Swagger JSON file.  **version:** This is a versioning number found on all DB records. If included, it will prevent your PUT/POST from overriding any updates to the record since your GET.  **Date & DateTime** follows the **ISO 8601** standard. Date: `YYYY-MM-DD`. DateTime: `YYYY-MM-DDThh:mm:ssZ`  **Sorting** is done by specifying a comma separated list, where a `-` prefix denotes descending. You can sort by sub object with the following format: `project.name, -date`.  **Searching:** is done by entering values in the optional fields for each API call. The values fall into the following categories: range, in, exact and like.  **Missing fields or even no response data** can occur because result objects and fields are filtered on authorization.  **See [FAQ](https://tripletex.no/execute/docViewer?articleId=906&language=0) for more additional information.**   ## Authentication: - **Tokens:** The Tripletex API uses 3 different tokens - **consumerToken**, **employeeToken** and **sessionToken**.  - **consumerToken** is a token provided to the consumer by Tripletex after the API 2.0 registration is completed.  - **employeeToken** is a token created by an administrator in your Tripletex account via the user settings and the tab \"API access\". Each employee token must be given a set of entitlements. [Read more here.](https://tripletex.no/execute/docViewer?articleId=853&language=0)  - **sessionToken** is the token from `/token/session/:create` which requires a consumerToken and an employeeToken created with the same consumer token, but not an authentication header. See how to create a sessionToken [here](https://tripletex.no/execute/docViewer?articleId=855&language=0). - The session token is used as the password in \"Basic Authentication Header\" for API calls.  - Use blank or `0` as username for accessing the account with regular employee token, or if a company owned employee token accesses <code>/company/&gt;withLoginAccess</code> or <code>/token/session/&gt;whoAmI</code>.  - For company owned employee tokens (accounting offices) the ID from <code>/company/&gt;withLoginAccess</code> can be used as username for accessing client accounts.  - If you need to create the header yourself use <code>Authorization: Basic &lt;base64encode('0:sessionToken')&gt;</code>.   ## Tags: - <div class=\"tag-icon-beta\"></div> **[BETA]** This is a beta endpoint and can be subject to change. - <div class=\"tag-icon-deprecated\"></div> **[DEPRECATED]** Deprecated means that we intend to remove/change this feature or capability in a future \"major\" API release. We therefore discourage all use of this feature/capability.  ## Fields: Use the `fields` parameter to specify which fields should be returned. This also supports fields from sub elements. Example values: - `project,activity,hours`  returns `{project:..., activity:...., hours:...}`. - just `project` returns `\"project\" : { \"id\": 12345, \"url\": \"tripletex.no/v2/projects/12345\"  }`. - `project(*)` returns `\"project\" : { \"id\": 12345 \"name\":\"ProjectName\" \"number.....startDate\": \"2013-01-07\" }`. - `project(name)` returns `\"project\" : { \"name\":\"ProjectName\" }`. - All elements and some subElements :  `*,activity(name),employee(*)`.  ## Changes: To get the changes for a resource, `changes` have to be explicitly specified as part of the `fields` parameter, e.g. `*,changes`. There are currently two types of change available:  - `CREATE` for when the resource was created - `UPDATE` for when the resource was updated  NOTE: For objects created prior to October 24th 2018 the list may be incomplete, but will always contain the CREATE and the last change (if the object has been changed after creation).  ## Rate limiting in each response header: Rate limiting is performed on the API calls for an employee for each API consumer. Status regarding the rate limit is returned as headers: - `X-Rate-Limit-Limit` - The number of allowed requests in the current period. - `X-Rate-Limit-Remaining` - The number of remaining requests. - `X-Rate-Limit-Reset` - The number of seconds left in the current period.  Once the rate limit is hit, all requests will return HTTP status code `429` for the remainder of the current period.   ## Response envelope: ``` {   \"fullResultSize\": ###,   \"from\": ###, // Paging starting from   \"count\": ###, // Paging count   \"versionDigest\": \"Hash of full result\",   \"values\": [...list of objects...] } {   \"value\": {...single object...} } ```   ## WebHook envelope: ``` {   \"subscriptionId\": ###,   \"event\": \"object.verb\", // As listed from /v2/event/   \"id\": ###, // Object id   \"value\": {... single object, null if object.deleted ...} } ```    ## Error/warning envelope: ``` {   \"status\": ###, // HTTP status code   \"code\": #####, // internal status code of event   \"message\": \"Basic feedback message in your language\",   \"link\": \"Link to doc\",   \"developerMessage\": \"More technical message\",   \"validationMessages\": [ // Will be null if Error     {       \"field\": \"Name of field\",       \"message\": \"Validation failure information\"     }   ],   \"requestId\": \"UUID used in any logs\" } ```   ## Status codes / Error codes: - **200 OK** - **201 Created** - From POSTs that create something new. - **204 No Content** - When there is no answer, ex: \"/:anAction\" or DELETE. - **400 Bad request** -   - **4000** Bad Request Exception   - **11000** Illegal Filter Exception   - **12000** Path Param Exception   - **24000**   Cryptography Exception - **401 Unauthorized** - When authentication is required and has failed or has not yet been provided   -  **3000** Authentication Exception   -  **9000** Security Exception - **403 Forbidden** - When AuthorisationManager says no. - **404 Not Found** - For content/IDs that does not exist.   -  **6000** Not Found Exception - **409 Conflict** - Such as an edit conflict between multiple simultaneous updates   -  **7000** Object Exists Exception   -  **8000** Revision Exception   - **10000** Locked Exception   - **14000** Duplicate entry - **422 Bad Request** - For Required fields or things like malformed payload.   - **15000** Value Validation Exception   - **16000** Mapping Exception   - **17000** Sorting Exception   - **18000** Validation Exception   - **21000** Param Exception   - **22000** Invalid JSON Exception   - **23000**   Result Set Too Large Exception - **429 Too Many Requests** - Request rate limit hit - **500 Internal Error** -  Unexpected condition was encountered and no more specific message is suitable   -  **1000** Exception
  *
- * OpenAPI spec version: 2.33.1
+ * OpenAPI spec version: 2.33.2
  * 
  * Generated by: https://github.com/swagger-api/swagger-codegen.git
- * Swagger Codegen version: 3.0.5
+ * Swagger Codegen version: 2.4.2
  */
+
 /**
  * NOTE: This class is auto generated by the swagger code generator program.
  * https://github.com/swagger-api/swagger-codegen
@@ -322,14 +323,14 @@ class LedgervoucherApi
      *
      * @param  int $id ID of voucher containing the attachment to delete. (required)
      * @param  int $version Version of voucher containing the attachment to delete. (optional)
-     * @param  bool $send_to_inbox Should the attachment be sent to inbox rather than deleted? (optional)
-     * @param  bool $split If sendToInbox is true, should the attachment be split into one voucher per page? (optional)
+     * @param  bool $send_to_inbox Should the attachment be sent to inbox rather than deleted? (optional, default to false)
+     * @param  bool $split If sendToInbox is true, should the attachment be split into one voucher per page? (optional, default to false)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function deleteAttachment($id, $version = null, $send_to_inbox = null, $split = null)
+    public function deleteAttachment($id, $version = null, $send_to_inbox = 'false', $split = 'false')
     {
         $this->deleteAttachmentWithHttpInfo($id, $version, $send_to_inbox, $split);
     }
@@ -341,14 +342,14 @@ class LedgervoucherApi
      *
      * @param  int $id ID of voucher containing the attachment to delete. (required)
      * @param  int $version Version of voucher containing the attachment to delete. (optional)
-     * @param  bool $send_to_inbox Should the attachment be sent to inbox rather than deleted? (optional)
-     * @param  bool $split If sendToInbox is true, should the attachment be split into one voucher per page? (optional)
+     * @param  bool $send_to_inbox Should the attachment be sent to inbox rather than deleted? (optional, default to false)
+     * @param  bool $split If sendToInbox is true, should the attachment be split into one voucher per page? (optional, default to false)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function deleteAttachmentWithHttpInfo($id, $version = null, $send_to_inbox = null, $split = null)
+    public function deleteAttachmentWithHttpInfo($id, $version = null, $send_to_inbox = 'false', $split = 'false')
     {
         $returnType = '';
         $request = $this->deleteAttachmentRequest($id, $version, $send_to_inbox, $split);
@@ -397,13 +398,13 @@ class LedgervoucherApi
      *
      * @param  int $id ID of voucher containing the attachment to delete. (required)
      * @param  int $version Version of voucher containing the attachment to delete. (optional)
-     * @param  bool $send_to_inbox Should the attachment be sent to inbox rather than deleted? (optional)
-     * @param  bool $split If sendToInbox is true, should the attachment be split into one voucher per page? (optional)
+     * @param  bool $send_to_inbox Should the attachment be sent to inbox rather than deleted? (optional, default to false)
+     * @param  bool $split If sendToInbox is true, should the attachment be split into one voucher per page? (optional, default to false)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteAttachmentAsync($id, $version = null, $send_to_inbox = null, $split = null)
+    public function deleteAttachmentAsync($id, $version = null, $send_to_inbox = 'false', $split = 'false')
     {
         return $this->deleteAttachmentAsyncWithHttpInfo($id, $version, $send_to_inbox, $split)
             ->then(
@@ -420,13 +421,13 @@ class LedgervoucherApi
      *
      * @param  int $id ID of voucher containing the attachment to delete. (required)
      * @param  int $version Version of voucher containing the attachment to delete. (optional)
-     * @param  bool $send_to_inbox Should the attachment be sent to inbox rather than deleted? (optional)
-     * @param  bool $split If sendToInbox is true, should the attachment be split into one voucher per page? (optional)
+     * @param  bool $send_to_inbox Should the attachment be sent to inbox rather than deleted? (optional, default to false)
+     * @param  bool $split If sendToInbox is true, should the attachment be split into one voucher per page? (optional, default to false)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function deleteAttachmentAsyncWithHttpInfo($id, $version = null, $send_to_inbox = null, $split = null)
+    public function deleteAttachmentAsyncWithHttpInfo($id, $version = null, $send_to_inbox = 'false', $split = 'false')
     {
         $returnType = '';
         $request = $this->deleteAttachmentRequest($id, $version, $send_to_inbox, $split);
@@ -459,13 +460,13 @@ class LedgervoucherApi
      *
      * @param  int $id ID of voucher containing the attachment to delete. (required)
      * @param  int $version Version of voucher containing the attachment to delete. (optional)
-     * @param  bool $send_to_inbox Should the attachment be sent to inbox rather than deleted? (optional)
-     * @param  bool $split If sendToInbox is true, should the attachment be split into one voucher per page? (optional)
+     * @param  bool $send_to_inbox Should the attachment be sent to inbox rather than deleted? (optional, default to false)
+     * @param  bool $split If sendToInbox is true, should the attachment be split into one voucher per page? (optional, default to false)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function deleteAttachmentRequest($id, $version = null, $send_to_inbox = null, $split = null)
+    protected function deleteAttachmentRequest($id, $version = null, $send_to_inbox = 'false', $split = 'false')
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -473,6 +474,10 @@ class LedgervoucherApi
                 'Missing the required parameter $id when calling deleteAttachment'
             );
         }
+        if ($version !== null && $version < 0) {
+            throw new \InvalidArgumentException('invalid value for "$version" when calling LedgervoucherApi.deleteAttachment, must be bigger than or equal to 0.');
+        }
+
 
         $resourcePath = '/ledger/voucher/{id}/attachment';
         $formParams = [];
@@ -637,7 +642,7 @@ class LedgervoucherApi
                 $content = $responseBody; //stream goes to serializer
             } else {
                 $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
+                if ($returnType !== 'string') {
                     $content = json_decode($content);
                 }
             }
@@ -905,7 +910,7 @@ class LedgervoucherApi
                 $content = $responseBody; //stream goes to serializer
             } else {
                 $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
+                if ($returnType !== 'string') {
                     $content = json_decode($content);
                 }
             }
@@ -1049,11 +1054,11 @@ class LedgervoucherApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['*/*']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['*/*'],
+                [],
                 []
             );
         }
@@ -1117,15 +1122,15 @@ class LedgervoucherApi
      *
      * [BETA] Upload a document to create one or more vouchers. Valid document formats are PDF, PNG, JPEG, TIFF and EHF. Send as multipart form.
      *
-     * @param  \SplFileObject $file file (optional)
-     * @param  string $description description (optional)
-     * @param  bool $split If the document consists of several pages, should the document be split into one voucher per page? (optional)
+     * @param  \SplFileObject $file The file (required)
+     * @param  string $description Optional description to use for the voucher(s). If omitted the file name will be used. (optional)
+     * @param  bool $split If the document consists of several pages, should the document be split into one voucher per page? (optional, default to false)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Tripletex\Model\ListResponseVoucher
      */
-    public function importDocument($file = null, $description = null, $split = null)
+    public function importDocument($file, $description = null, $split = 'false')
     {
         list($response) = $this->importDocumentWithHttpInfo($file, $description, $split);
         return $response;
@@ -1136,15 +1141,15 @@ class LedgervoucherApi
      *
      * [BETA] Upload a document to create one or more vouchers. Valid document formats are PDF, PNG, JPEG, TIFF and EHF. Send as multipart form.
      *
-     * @param  \SplFileObject $file (optional)
-     * @param  string $description (optional)
-     * @param  bool $split If the document consists of several pages, should the document be split into one voucher per page? (optional)
+     * @param  \SplFileObject $file The file (required)
+     * @param  string $description Optional description to use for the voucher(s). If omitted the file name will be used. (optional)
+     * @param  bool $split If the document consists of several pages, should the document be split into one voucher per page? (optional, default to false)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Tripletex\Model\ListResponseVoucher, HTTP status code, HTTP response headers (array of strings)
      */
-    public function importDocumentWithHttpInfo($file = null, $description = null, $split = null)
+    public function importDocumentWithHttpInfo($file, $description = null, $split = 'false')
     {
         $returnType = '\Tripletex\Model\ListResponseVoucher';
         $request = $this->importDocumentRequest($file, $description, $split);
@@ -1182,7 +1187,7 @@ class LedgervoucherApi
                 $content = $responseBody; //stream goes to serializer
             } else {
                 $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
+                if ($returnType !== 'string') {
                     $content = json_decode($content);
                 }
             }
@@ -1213,14 +1218,14 @@ class LedgervoucherApi
      *
      * [BETA] Upload a document to create one or more vouchers. Valid document formats are PDF, PNG, JPEG, TIFF and EHF. Send as multipart form.
      *
-     * @param  \SplFileObject $file (optional)
-     * @param  string $description (optional)
-     * @param  bool $split If the document consists of several pages, should the document be split into one voucher per page? (optional)
+     * @param  \SplFileObject $file The file (required)
+     * @param  string $description Optional description to use for the voucher(s). If omitted the file name will be used. (optional)
+     * @param  bool $split If the document consists of several pages, should the document be split into one voucher per page? (optional, default to false)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function importDocumentAsync($file = null, $description = null, $split = null)
+    public function importDocumentAsync($file, $description = null, $split = 'false')
     {
         return $this->importDocumentAsyncWithHttpInfo($file, $description, $split)
             ->then(
@@ -1235,14 +1240,14 @@ class LedgervoucherApi
      *
      * [BETA] Upload a document to create one or more vouchers. Valid document formats are PDF, PNG, JPEG, TIFF and EHF. Send as multipart form.
      *
-     * @param  \SplFileObject $file (optional)
-     * @param  string $description (optional)
-     * @param  bool $split If the document consists of several pages, should the document be split into one voucher per page? (optional)
+     * @param  \SplFileObject $file The file (required)
+     * @param  string $description Optional description to use for the voucher(s). If omitted the file name will be used. (optional)
+     * @param  bool $split If the document consists of several pages, should the document be split into one voucher per page? (optional, default to false)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function importDocumentAsyncWithHttpInfo($file = null, $description = null, $split = null)
+    public function importDocumentAsyncWithHttpInfo($file, $description = null, $split = 'false')
     {
         $returnType = '\Tripletex\Model\ListResponseVoucher';
         $request = $this->importDocumentRequest($file, $description, $split);
@@ -1287,15 +1292,21 @@ class LedgervoucherApi
     /**
      * Create request for operation 'importDocument'
      *
-     * @param  \SplFileObject $file (optional)
-     * @param  string $description (optional)
-     * @param  bool $split If the document consists of several pages, should the document be split into one voucher per page? (optional)
+     * @param  \SplFileObject $file The file (required)
+     * @param  string $description Optional description to use for the voucher(s). If omitted the file name will be used. (optional)
+     * @param  bool $split If the document consists of several pages, should the document be split into one voucher per page? (optional, default to false)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function importDocumentRequest($file = null, $description = null, $split = null)
+    protected function importDocumentRequest($file, $description = null, $split = 'false')
     {
+        // verify the required parameter 'file' is set
+        if ($file === null || (is_array($file) && count($file) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $file when calling importDocument'
+            );
+        }
 
         $resourcePath = '/ledger/voucher/importDocument';
         $formParams = [];
@@ -1324,11 +1335,11 @@ class LedgervoucherApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['*/*']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['*/*'],
+                [],
                 ['multipart/form-data']
             );
         }
@@ -1392,15 +1403,15 @@ class LedgervoucherApi
      *
      * Import GBAT10. Send as multipart form.
      *
-     * @param  bool $generate_vat_postings generate_vat_postings (optional)
-     * @param  \SplFileObject $file file (optional)
-     * @param  string $encoding encoding (optional)
+     * @param  bool $generate_vat_postings If the import should generate VAT postings (required)
+     * @param  \SplFileObject $file The file (required)
+     * @param  string $encoding The file encoding (optional, default to utf-8)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function importGbat10($generate_vat_postings = null, $file = null, $encoding = null)
+    public function importGbat10($generate_vat_postings, $file, $encoding = 'utf-8')
     {
         $this->importGbat10WithHttpInfo($generate_vat_postings, $file, $encoding);
     }
@@ -1410,15 +1421,15 @@ class LedgervoucherApi
      *
      * Import GBAT10. Send as multipart form.
      *
-     * @param  bool $generate_vat_postings (optional)
-     * @param  \SplFileObject $file (optional)
-     * @param  string $encoding (optional)
+     * @param  bool $generate_vat_postings If the import should generate VAT postings (required)
+     * @param  \SplFileObject $file The file (required)
+     * @param  string $encoding The file encoding (optional, default to utf-8)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function importGbat10WithHttpInfo($generate_vat_postings = null, $file = null, $encoding = null)
+    public function importGbat10WithHttpInfo($generate_vat_postings, $file, $encoding = 'utf-8')
     {
         $returnType = '';
         $request = $this->importGbat10Request($generate_vat_postings, $file, $encoding);
@@ -1465,14 +1476,14 @@ class LedgervoucherApi
      *
      * Import GBAT10. Send as multipart form.
      *
-     * @param  bool $generate_vat_postings (optional)
-     * @param  \SplFileObject $file (optional)
-     * @param  string $encoding (optional)
+     * @param  bool $generate_vat_postings If the import should generate VAT postings (required)
+     * @param  \SplFileObject $file The file (required)
+     * @param  string $encoding The file encoding (optional, default to utf-8)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function importGbat10Async($generate_vat_postings = null, $file = null, $encoding = null)
+    public function importGbat10Async($generate_vat_postings, $file, $encoding = 'utf-8')
     {
         return $this->importGbat10AsyncWithHttpInfo($generate_vat_postings, $file, $encoding)
             ->then(
@@ -1487,14 +1498,14 @@ class LedgervoucherApi
      *
      * Import GBAT10. Send as multipart form.
      *
-     * @param  bool $generate_vat_postings (optional)
-     * @param  \SplFileObject $file (optional)
-     * @param  string $encoding (optional)
+     * @param  bool $generate_vat_postings If the import should generate VAT postings (required)
+     * @param  \SplFileObject $file The file (required)
+     * @param  string $encoding The file encoding (optional, default to utf-8)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function importGbat10AsyncWithHttpInfo($generate_vat_postings = null, $file = null, $encoding = null)
+    public function importGbat10AsyncWithHttpInfo($generate_vat_postings, $file, $encoding = 'utf-8')
     {
         $returnType = '';
         $request = $this->importGbat10Request($generate_vat_postings, $file, $encoding);
@@ -1525,15 +1536,27 @@ class LedgervoucherApi
     /**
      * Create request for operation 'importGbat10'
      *
-     * @param  bool $generate_vat_postings (optional)
-     * @param  \SplFileObject $file (optional)
-     * @param  string $encoding (optional)
+     * @param  bool $generate_vat_postings If the import should generate VAT postings (required)
+     * @param  \SplFileObject $file The file (required)
+     * @param  string $encoding The file encoding (optional, default to utf-8)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function importGbat10Request($generate_vat_postings = null, $file = null, $encoding = null)
+    protected function importGbat10Request($generate_vat_postings, $file, $encoding = 'utf-8')
     {
+        // verify the required parameter 'generate_vat_postings' is set
+        if ($generate_vat_postings === null || (is_array($generate_vat_postings) && count($generate_vat_postings) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $generate_vat_postings when calling importGbat10'
+            );
+        }
+        // verify the required parameter 'file' is set
+        if ($file === null || (is_array($file) && count($file) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $file when calling importGbat10'
+            );
+        }
 
         $resourcePath = '/ledger/voucher/importGbat10';
         $formParams = [];
@@ -1634,8 +1657,8 @@ class LedgervoucherApi
      * @param  string $date_from From and including (optional)
      * @param  string $date_to To and excluding (optional)
      * @param  string $changed_since Only return elements that have changed since this date and time (optional)
-     * @param  int $from From index (optional)
-     * @param  int $count Number of elements to return (optional)
+     * @param  int $from From index (optional, default to 0)
+     * @param  int $count Number of elements to return (optional, default to 1000)
      * @param  string $sorting Sorting pattern (optional)
      * @param  string $fields Fields filter pattern (optional)
      *
@@ -1643,7 +1666,7 @@ class LedgervoucherApi
      * @throws \InvalidArgumentException
      * @return \Tripletex\Model\ListResponseVoucher
      */
-    public function nonPosted($include_non_approved, $date_from = null, $date_to = null, $changed_since = null, $from = null, $count = null, $sorting = null, $fields = null)
+    public function nonPosted($include_non_approved, $date_from = null, $date_to = null, $changed_since = null, $from = '0', $count = '1000', $sorting = null, $fields = null)
     {
         list($response) = $this->nonPostedWithHttpInfo($include_non_approved, $date_from, $date_to, $changed_since, $from, $count, $sorting, $fields);
         return $response;
@@ -1658,8 +1681,8 @@ class LedgervoucherApi
      * @param  string $date_from From and including (optional)
      * @param  string $date_to To and excluding (optional)
      * @param  string $changed_since Only return elements that have changed since this date and time (optional)
-     * @param  int $from From index (optional)
-     * @param  int $count Number of elements to return (optional)
+     * @param  int $from From index (optional, default to 0)
+     * @param  int $count Number of elements to return (optional, default to 1000)
      * @param  string $sorting Sorting pattern (optional)
      * @param  string $fields Fields filter pattern (optional)
      *
@@ -1667,7 +1690,7 @@ class LedgervoucherApi
      * @throws \InvalidArgumentException
      * @return array of \Tripletex\Model\ListResponseVoucher, HTTP status code, HTTP response headers (array of strings)
      */
-    public function nonPostedWithHttpInfo($include_non_approved, $date_from = null, $date_to = null, $changed_since = null, $from = null, $count = null, $sorting = null, $fields = null)
+    public function nonPostedWithHttpInfo($include_non_approved, $date_from = null, $date_to = null, $changed_since = null, $from = '0', $count = '1000', $sorting = null, $fields = null)
     {
         $returnType = '\Tripletex\Model\ListResponseVoucher';
         $request = $this->nonPostedRequest($include_non_approved, $date_from, $date_to, $changed_since, $from, $count, $sorting, $fields);
@@ -1705,7 +1728,7 @@ class LedgervoucherApi
                 $content = $responseBody; //stream goes to serializer
             } else {
                 $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
+                if ($returnType !== 'string') {
                     $content = json_decode($content);
                 }
             }
@@ -1740,15 +1763,15 @@ class LedgervoucherApi
      * @param  string $date_from From and including (optional)
      * @param  string $date_to To and excluding (optional)
      * @param  string $changed_since Only return elements that have changed since this date and time (optional)
-     * @param  int $from From index (optional)
-     * @param  int $count Number of elements to return (optional)
+     * @param  int $from From index (optional, default to 0)
+     * @param  int $count Number of elements to return (optional, default to 1000)
      * @param  string $sorting Sorting pattern (optional)
      * @param  string $fields Fields filter pattern (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function nonPostedAsync($include_non_approved, $date_from = null, $date_to = null, $changed_since = null, $from = null, $count = null, $sorting = null, $fields = null)
+    public function nonPostedAsync($include_non_approved, $date_from = null, $date_to = null, $changed_since = null, $from = '0', $count = '1000', $sorting = null, $fields = null)
     {
         return $this->nonPostedAsyncWithHttpInfo($include_non_approved, $date_from, $date_to, $changed_since, $from, $count, $sorting, $fields)
             ->then(
@@ -1767,15 +1790,15 @@ class LedgervoucherApi
      * @param  string $date_from From and including (optional)
      * @param  string $date_to To and excluding (optional)
      * @param  string $changed_since Only return elements that have changed since this date and time (optional)
-     * @param  int $from From index (optional)
-     * @param  int $count Number of elements to return (optional)
+     * @param  int $from From index (optional, default to 0)
+     * @param  int $count Number of elements to return (optional, default to 1000)
      * @param  string $sorting Sorting pattern (optional)
      * @param  string $fields Fields filter pattern (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function nonPostedAsyncWithHttpInfo($include_non_approved, $date_from = null, $date_to = null, $changed_since = null, $from = null, $count = null, $sorting = null, $fields = null)
+    public function nonPostedAsyncWithHttpInfo($include_non_approved, $date_from = null, $date_to = null, $changed_since = null, $from = '0', $count = '1000', $sorting = null, $fields = null)
     {
         $returnType = '\Tripletex\Model\ListResponseVoucher';
         $request = $this->nonPostedRequest($include_non_approved, $date_from, $date_to, $changed_since, $from, $count, $sorting, $fields);
@@ -1824,15 +1847,15 @@ class LedgervoucherApi
      * @param  string $date_from From and including (optional)
      * @param  string $date_to To and excluding (optional)
      * @param  string $changed_since Only return elements that have changed since this date and time (optional)
-     * @param  int $from From index (optional)
-     * @param  int $count Number of elements to return (optional)
+     * @param  int $from From index (optional, default to 0)
+     * @param  int $count Number of elements to return (optional, default to 1000)
      * @param  string $sorting Sorting pattern (optional)
      * @param  string $fields Fields filter pattern (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function nonPostedRequest($include_non_approved, $date_from = null, $date_to = null, $changed_since = null, $from = null, $count = null, $sorting = null, $fields = null)
+    protected function nonPostedRequest($include_non_approved, $date_from = null, $date_to = null, $changed_since = null, $from = '0', $count = '1000', $sorting = null, $fields = null)
     {
         // verify the required parameter 'include_non_approved' is set
         if ($include_non_approved === null || (is_array($include_non_approved) && count($include_non_approved) === 0)) {
@@ -1887,11 +1910,11 @@ class LedgervoucherApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['*/*']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['*/*'],
+                [],
                 []
             );
         }
@@ -1955,16 +1978,16 @@ class LedgervoucherApi
      *
      * Add new voucher. IMPORTANT: Also creates postings. Only the gross amounts will be used
      *
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher $body JSON representing the new object to be created. Should not have ID and version set. (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Tripletex\Model\ResponseWrapperVoucher
      */
-    public function post($body = null, $send_to_ledger = null)
+    public function post($send_to_ledger = 'true', $body = null)
     {
-        list($response) = $this->postWithHttpInfo($body, $send_to_ledger);
+        list($response) = $this->postWithHttpInfo($send_to_ledger, $body);
         return $response;
     }
 
@@ -1973,17 +1996,17 @@ class LedgervoucherApi
      *
      * Add new voucher. IMPORTANT: Also creates postings. Only the gross amounts will be used
      *
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher $body JSON representing the new object to be created. Should not have ID and version set. (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Tripletex\Model\ResponseWrapperVoucher, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postWithHttpInfo($body = null, $send_to_ledger = null)
+    public function postWithHttpInfo($send_to_ledger = 'true', $body = null)
     {
         $returnType = '\Tripletex\Model\ResponseWrapperVoucher';
-        $request = $this->postRequest($body, $send_to_ledger);
+        $request = $this->postRequest($send_to_ledger, $body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2018,7 +2041,7 @@ class LedgervoucherApi
                 $content = $responseBody; //stream goes to serializer
             } else {
                 $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
+                if ($returnType !== 'string') {
                     $content = json_decode($content);
                 }
             }
@@ -2049,15 +2072,15 @@ class LedgervoucherApi
      *
      * Add new voucher. IMPORTANT: Also creates postings. Only the gross amounts will be used
      *
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher $body JSON representing the new object to be created. Should not have ID and version set. (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAsync($body = null, $send_to_ledger = null)
+    public function postAsync($send_to_ledger = 'true', $body = null)
     {
-        return $this->postAsyncWithHttpInfo($body, $send_to_ledger)
+        return $this->postAsyncWithHttpInfo($send_to_ledger, $body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2070,16 +2093,16 @@ class LedgervoucherApi
      *
      * Add new voucher. IMPORTANT: Also creates postings. Only the gross amounts will be used
      *
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher $body JSON representing the new object to be created. Should not have ID and version set. (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postAsyncWithHttpInfo($body = null, $send_to_ledger = null)
+    public function postAsyncWithHttpInfo($send_to_ledger = 'true', $body = null)
     {
         $returnType = '\Tripletex\Model\ResponseWrapperVoucher';
-        $request = $this->postRequest($body, $send_to_ledger);
+        $request = $this->postRequest($send_to_ledger, $body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2121,13 +2144,13 @@ class LedgervoucherApi
     /**
      * Create request for operation 'post'
      *
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher $body JSON representing the new object to be created. Should not have ID and version set. (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postRequest($body = null, $send_to_ledger = null)
+    protected function postRequest($send_to_ledger = 'true', $body = null)
     {
 
         $resourcePath = '/ledger/voucher';
@@ -2151,11 +2174,11 @@ class LedgervoucherApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['*/*']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['*/*'],
+                [],
                 ['application/json; charset=utf-8']
             );
         }
@@ -2220,16 +2243,16 @@ class LedgervoucherApi
      * [BETA] Update voucher. Postings with guiRow==0 will be deleted and regenerated.
      *
      * @param  int $id Element ID (required)
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher $body Partial object describing what should be updated (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Tripletex\Model\ResponseWrapperVoucher
      */
-    public function put($id, $body = null, $send_to_ledger = null)
+    public function put($id, $send_to_ledger = 'true', $body = null)
     {
-        list($response) = $this->putWithHttpInfo($id, $body, $send_to_ledger);
+        list($response) = $this->putWithHttpInfo($id, $send_to_ledger, $body);
         return $response;
     }
 
@@ -2239,17 +2262,17 @@ class LedgervoucherApi
      * [BETA] Update voucher. Postings with guiRow==0 will be deleted and regenerated.
      *
      * @param  int $id Element ID (required)
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher $body Partial object describing what should be updated (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Tripletex\Model\ResponseWrapperVoucher, HTTP status code, HTTP response headers (array of strings)
      */
-    public function putWithHttpInfo($id, $body = null, $send_to_ledger = null)
+    public function putWithHttpInfo($id, $send_to_ledger = 'true', $body = null)
     {
         $returnType = '\Tripletex\Model\ResponseWrapperVoucher';
-        $request = $this->putRequest($id, $body, $send_to_ledger);
+        $request = $this->putRequest($id, $send_to_ledger, $body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2284,7 +2307,7 @@ class LedgervoucherApi
                 $content = $responseBody; //stream goes to serializer
             } else {
                 $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
+                if ($returnType !== 'string') {
                     $content = json_decode($content);
                 }
             }
@@ -2316,15 +2339,15 @@ class LedgervoucherApi
      * [BETA] Update voucher. Postings with guiRow==0 will be deleted and regenerated.
      *
      * @param  int $id Element ID (required)
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher $body Partial object describing what should be updated (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putAsync($id, $body = null, $send_to_ledger = null)
+    public function putAsync($id, $send_to_ledger = 'true', $body = null)
     {
-        return $this->putAsyncWithHttpInfo($id, $body, $send_to_ledger)
+        return $this->putAsyncWithHttpInfo($id, $send_to_ledger, $body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2338,16 +2361,16 @@ class LedgervoucherApi
      * [BETA] Update voucher. Postings with guiRow==0 will be deleted and regenerated.
      *
      * @param  int $id Element ID (required)
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher $body Partial object describing what should be updated (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putAsyncWithHttpInfo($id, $body = null, $send_to_ledger = null)
+    public function putAsyncWithHttpInfo($id, $send_to_ledger = 'true', $body = null)
     {
         $returnType = '\Tripletex\Model\ResponseWrapperVoucher';
-        $request = $this->putRequest($id, $body, $send_to_ledger);
+        $request = $this->putRequest($id, $send_to_ledger, $body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2390,13 +2413,13 @@ class LedgervoucherApi
      * Create request for operation 'put'
      *
      * @param  int $id Element ID (required)
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher $body Partial object describing what should be updated (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function putRequest($id, $body = null, $send_to_ledger = null)
+    protected function putRequest($id, $send_to_ledger = 'true', $body = null)
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -2434,11 +2457,11 @@ class LedgervoucherApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['*/*']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['*/*'],
+                [],
                 ['application/json; charset=utf-8']
             );
         }
@@ -2502,16 +2525,16 @@ class LedgervoucherApi
      *
      * [BETA] Update multiple vouchers. Postings with guiRow==0 will be deleted and regenerated.
      *
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher[] $body JSON representing updates to object. Should have ID and version set. (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Tripletex\Model\ListResponseVoucher
      */
-    public function putList($body = null, $send_to_ledger = null)
+    public function putList($send_to_ledger = 'true', $body = null)
     {
-        list($response) = $this->putListWithHttpInfo($body, $send_to_ledger);
+        list($response) = $this->putListWithHttpInfo($send_to_ledger, $body);
         return $response;
     }
 
@@ -2520,17 +2543,17 @@ class LedgervoucherApi
      *
      * [BETA] Update multiple vouchers. Postings with guiRow==0 will be deleted and regenerated.
      *
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher[] $body JSON representing updates to object. Should have ID and version set. (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Tripletex\Model\ListResponseVoucher, HTTP status code, HTTP response headers (array of strings)
      */
-    public function putListWithHttpInfo($body = null, $send_to_ledger = null)
+    public function putListWithHttpInfo($send_to_ledger = 'true', $body = null)
     {
         $returnType = '\Tripletex\Model\ListResponseVoucher';
-        $request = $this->putListRequest($body, $send_to_ledger);
+        $request = $this->putListRequest($send_to_ledger, $body);
 
         try {
             $options = $this->createHttpClientOption();
@@ -2565,7 +2588,7 @@ class LedgervoucherApi
                 $content = $responseBody; //stream goes to serializer
             } else {
                 $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
+                if ($returnType !== 'string') {
                     $content = json_decode($content);
                 }
             }
@@ -2596,15 +2619,15 @@ class LedgervoucherApi
      *
      * [BETA] Update multiple vouchers. Postings with guiRow==0 will be deleted and regenerated.
      *
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher[] $body JSON representing updates to object. Should have ID and version set. (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putListAsync($body = null, $send_to_ledger = null)
+    public function putListAsync($send_to_ledger = 'true', $body = null)
     {
-        return $this->putListAsyncWithHttpInfo($body, $send_to_ledger)
+        return $this->putListAsyncWithHttpInfo($send_to_ledger, $body)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -2617,16 +2640,16 @@ class LedgervoucherApi
      *
      * [BETA] Update multiple vouchers. Postings with guiRow==0 will be deleted and regenerated.
      *
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher[] $body JSON representing updates to object. Should have ID and version set. (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function putListAsyncWithHttpInfo($body = null, $send_to_ledger = null)
+    public function putListAsyncWithHttpInfo($send_to_ledger = 'true', $body = null)
     {
         $returnType = '\Tripletex\Model\ListResponseVoucher';
-        $request = $this->putListRequest($body, $send_to_ledger);
+        $request = $this->putListRequest($send_to_ledger, $body);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -2668,13 +2691,13 @@ class LedgervoucherApi
     /**
      * Create request for operation 'putList'
      *
+     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional, default to true)
      * @param  \Tripletex\Model\Voucher[] $body JSON representing updates to object. Should have ID and version set. (optional)
-     * @param  bool $send_to_ledger Should the voucher be sent to ledger? Requires the \&quot;Advanced Voucher\&quot; permission. (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function putListRequest($body = null, $send_to_ledger = null)
+    protected function putListRequest($send_to_ledger = 'true', $body = null)
     {
 
         $resourcePath = '/ledger/voucher/list';
@@ -2698,11 +2721,11 @@ class LedgervoucherApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['*/*']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['*/*'],
+                [],
                 ['application/json; charset=utf-8']
             );
         }
@@ -2829,7 +2852,7 @@ class LedgervoucherApi
                 $content = $responseBody; //stream goes to serializer
             } else {
                 $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
+                if ($returnType !== 'string') {
                     $content = json_decode($content);
                 }
             }
@@ -2979,11 +3002,11 @@ class LedgervoucherApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['*/*']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['*/*'],
+                [],
                 []
             );
         }
@@ -3054,8 +3077,8 @@ class LedgervoucherApi
      * @param  int $number_from From and including (optional)
      * @param  int $number_to To and excluding (optional)
      * @param  string $type_id List of IDs (optional)
-     * @param  int $from From index (optional)
-     * @param  int $count Number of elements to return (optional)
+     * @param  int $from From index (optional, default to 0)
+     * @param  int $count Number of elements to return (optional, default to 1000)
      * @param  string $sorting Sorting pattern (optional)
      * @param  string $fields Fields filter pattern (optional)
      *
@@ -3063,7 +3086,7 @@ class LedgervoucherApi
      * @throws \InvalidArgumentException
      * @return \Tripletex\Model\VoucherSearchResponse
      */
-    public function search($date_from, $date_to, $id = null, $number = null, $number_from = null, $number_to = null, $type_id = null, $from = null, $count = null, $sorting = null, $fields = null)
+    public function search($date_from, $date_to, $id = null, $number = null, $number_from = null, $number_to = null, $type_id = null, $from = '0', $count = '1000', $sorting = null, $fields = null)
     {
         list($response) = $this->searchWithHttpInfo($date_from, $date_to, $id, $number, $number_from, $number_to, $type_id, $from, $count, $sorting, $fields);
         return $response;
@@ -3081,8 +3104,8 @@ class LedgervoucherApi
      * @param  int $number_from From and including (optional)
      * @param  int $number_to To and excluding (optional)
      * @param  string $type_id List of IDs (optional)
-     * @param  int $from From index (optional)
-     * @param  int $count Number of elements to return (optional)
+     * @param  int $from From index (optional, default to 0)
+     * @param  int $count Number of elements to return (optional, default to 1000)
      * @param  string $sorting Sorting pattern (optional)
      * @param  string $fields Fields filter pattern (optional)
      *
@@ -3090,7 +3113,7 @@ class LedgervoucherApi
      * @throws \InvalidArgumentException
      * @return array of \Tripletex\Model\VoucherSearchResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function searchWithHttpInfo($date_from, $date_to, $id = null, $number = null, $number_from = null, $number_to = null, $type_id = null, $from = null, $count = null, $sorting = null, $fields = null)
+    public function searchWithHttpInfo($date_from, $date_to, $id = null, $number = null, $number_from = null, $number_to = null, $type_id = null, $from = '0', $count = '1000', $sorting = null, $fields = null)
     {
         $returnType = '\Tripletex\Model\VoucherSearchResponse';
         $request = $this->searchRequest($date_from, $date_to, $id, $number, $number_from, $number_to, $type_id, $from, $count, $sorting, $fields);
@@ -3128,7 +3151,7 @@ class LedgervoucherApi
                 $content = $responseBody; //stream goes to serializer
             } else {
                 $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
+                if ($returnType !== 'string') {
                     $content = json_decode($content);
                 }
             }
@@ -3166,15 +3189,15 @@ class LedgervoucherApi
      * @param  int $number_from From and including (optional)
      * @param  int $number_to To and excluding (optional)
      * @param  string $type_id List of IDs (optional)
-     * @param  int $from From index (optional)
-     * @param  int $count Number of elements to return (optional)
+     * @param  int $from From index (optional, default to 0)
+     * @param  int $count Number of elements to return (optional, default to 1000)
      * @param  string $sorting Sorting pattern (optional)
      * @param  string $fields Fields filter pattern (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchAsync($date_from, $date_to, $id = null, $number = null, $number_from = null, $number_to = null, $type_id = null, $from = null, $count = null, $sorting = null, $fields = null)
+    public function searchAsync($date_from, $date_to, $id = null, $number = null, $number_from = null, $number_to = null, $type_id = null, $from = '0', $count = '1000', $sorting = null, $fields = null)
     {
         return $this->searchAsyncWithHttpInfo($date_from, $date_to, $id, $number, $number_from, $number_to, $type_id, $from, $count, $sorting, $fields)
             ->then(
@@ -3196,15 +3219,15 @@ class LedgervoucherApi
      * @param  int $number_from From and including (optional)
      * @param  int $number_to To and excluding (optional)
      * @param  string $type_id List of IDs (optional)
-     * @param  int $from From index (optional)
-     * @param  int $count Number of elements to return (optional)
+     * @param  int $from From index (optional, default to 0)
+     * @param  int $count Number of elements to return (optional, default to 1000)
      * @param  string $sorting Sorting pattern (optional)
      * @param  string $fields Fields filter pattern (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function searchAsyncWithHttpInfo($date_from, $date_to, $id = null, $number = null, $number_from = null, $number_to = null, $type_id = null, $from = null, $count = null, $sorting = null, $fields = null)
+    public function searchAsyncWithHttpInfo($date_from, $date_to, $id = null, $number = null, $number_from = null, $number_to = null, $type_id = null, $from = '0', $count = '1000', $sorting = null, $fields = null)
     {
         $returnType = '\Tripletex\Model\VoucherSearchResponse';
         $request = $this->searchRequest($date_from, $date_to, $id, $number, $number_from, $number_to, $type_id, $from, $count, $sorting, $fields);
@@ -3256,15 +3279,15 @@ class LedgervoucherApi
      * @param  int $number_from From and including (optional)
      * @param  int $number_to To and excluding (optional)
      * @param  string $type_id List of IDs (optional)
-     * @param  int $from From index (optional)
-     * @param  int $count Number of elements to return (optional)
+     * @param  int $from From index (optional, default to 0)
+     * @param  int $count Number of elements to return (optional, default to 1000)
      * @param  string $sorting Sorting pattern (optional)
      * @param  string $fields Fields filter pattern (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function searchRequest($date_from, $date_to, $id = null, $number = null, $number_from = null, $number_to = null, $type_id = null, $from = null, $count = null, $sorting = null, $fields = null)
+    protected function searchRequest($date_from, $date_to, $id = null, $number = null, $number_from = null, $number_to = null, $type_id = null, $from = '0', $count = '1000', $sorting = null, $fields = null)
     {
         // verify the required parameter 'date_from' is set
         if ($date_from === null || (is_array($date_from) && count($date_from) === 0)) {
@@ -3337,11 +3360,11 @@ class LedgervoucherApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['*/*']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['*/*'],
+                [],
                 []
             );
         }
@@ -3470,7 +3493,7 @@ class LedgervoucherApi
                 $content = $responseBody; //stream goes to serializer
             } else {
                 $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
+                if ($returnType !== 'string') {
                     $content = json_decode($content);
                 }
             }
@@ -3590,6 +3613,10 @@ class LedgervoucherApi
                 'Missing the required parameter $id when calling sendToInbox'
             );
         }
+        if ($version !== null && $version < 0) {
+            throw new \InvalidArgumentException('invalid value for "$version" when calling LedgervoucherApi.sendToInbox, must be bigger than or equal to 0.');
+        }
+
 
         $resourcePath = '/ledger/voucher/{id}/:sendToInbox';
         $formParams = [];
@@ -3621,11 +3648,11 @@ class LedgervoucherApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['*/*']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['*/*'],
+                [],
                 []
             );
         }
@@ -3691,13 +3718,13 @@ class LedgervoucherApi
      *
      * @param  int $id ID of voucher that should be sent to ledger. (required)
      * @param  int $version Version of voucher that should be sent to ledger. (optional)
-     * @param  int $number Voucher number to use. If omitted or 0 the system will assign the number. (optional)
+     * @param  int $number Voucher number to use. If omitted or 0 the system will assign the number. (optional, default to 0)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Tripletex\Model\ResponseWrapperVoucher
      */
-    public function sendToLedger($id, $version = null, $number = null)
+    public function sendToLedger($id, $version = null, $number = '0')
     {
         list($response) = $this->sendToLedgerWithHttpInfo($id, $version, $number);
         return $response;
@@ -3710,13 +3737,13 @@ class LedgervoucherApi
      *
      * @param  int $id ID of voucher that should be sent to ledger. (required)
      * @param  int $version Version of voucher that should be sent to ledger. (optional)
-     * @param  int $number Voucher number to use. If omitted or 0 the system will assign the number. (optional)
+     * @param  int $number Voucher number to use. If omitted or 0 the system will assign the number. (optional, default to 0)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Tripletex\Model\ResponseWrapperVoucher, HTTP status code, HTTP response headers (array of strings)
      */
-    public function sendToLedgerWithHttpInfo($id, $version = null, $number = null)
+    public function sendToLedgerWithHttpInfo($id, $version = null, $number = '0')
     {
         $returnType = '\Tripletex\Model\ResponseWrapperVoucher';
         $request = $this->sendToLedgerRequest($id, $version, $number);
@@ -3754,7 +3781,7 @@ class LedgervoucherApi
                 $content = $responseBody; //stream goes to serializer
             } else {
                 $content = $responseBody->getContents();
-                if (!in_array($returnType, ['string','integer','bool'])) {
+                if ($returnType !== 'string') {
                     $content = json_decode($content);
                 }
             }
@@ -3787,12 +3814,12 @@ class LedgervoucherApi
      *
      * @param  int $id ID of voucher that should be sent to ledger. (required)
      * @param  int $version Version of voucher that should be sent to ledger. (optional)
-     * @param  int $number Voucher number to use. If omitted or 0 the system will assign the number. (optional)
+     * @param  int $number Voucher number to use. If omitted or 0 the system will assign the number. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendToLedgerAsync($id, $version = null, $number = null)
+    public function sendToLedgerAsync($id, $version = null, $number = '0')
     {
         return $this->sendToLedgerAsyncWithHttpInfo($id, $version, $number)
             ->then(
@@ -3809,12 +3836,12 @@ class LedgervoucherApi
      *
      * @param  int $id ID of voucher that should be sent to ledger. (required)
      * @param  int $version Version of voucher that should be sent to ledger. (optional)
-     * @param  int $number Voucher number to use. If omitted or 0 the system will assign the number. (optional)
+     * @param  int $number Voucher number to use. If omitted or 0 the system will assign the number. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function sendToLedgerAsyncWithHttpInfo($id, $version = null, $number = null)
+    public function sendToLedgerAsyncWithHttpInfo($id, $version = null, $number = '0')
     {
         $returnType = '\Tripletex\Model\ResponseWrapperVoucher';
         $request = $this->sendToLedgerRequest($id, $version, $number);
@@ -3861,12 +3888,12 @@ class LedgervoucherApi
      *
      * @param  int $id ID of voucher that should be sent to ledger. (required)
      * @param  int $version Version of voucher that should be sent to ledger. (optional)
-     * @param  int $number Voucher number to use. If omitted or 0 the system will assign the number. (optional)
+     * @param  int $number Voucher number to use. If omitted or 0 the system will assign the number. (optional, default to 0)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function sendToLedgerRequest($id, $version = null, $number = null)
+    protected function sendToLedgerRequest($id, $version = null, $number = '0')
     {
         // verify the required parameter 'id' is set
         if ($id === null || (is_array($id) && count($id) === 0)) {
@@ -3874,6 +3901,14 @@ class LedgervoucherApi
                 'Missing the required parameter $id when calling sendToLedger'
             );
         }
+        if ($version !== null && $version < 0) {
+            throw new \InvalidArgumentException('invalid value for "$version" when calling LedgervoucherApi.sendToLedger, must be bigger than or equal to 0.');
+        }
+
+        if ($number !== null && $number < 0) {
+            throw new \InvalidArgumentException('invalid value for "$number" when calling LedgervoucherApi.sendToLedger, must be bigger than or equal to 0.');
+        }
+
 
         $resourcePath = '/ledger/voucher/{id}/:sendToLedger';
         $formParams = [];
@@ -3905,11 +3940,11 @@ class LedgervoucherApi
 
         if ($multipart) {
             $headers = $this->headerSelector->selectHeadersForMultipart(
-                ['*/*']
+                []
             );
         } else {
             $headers = $this->headerSelector->selectHeaders(
-                ['*/*'],
+                [],
                 []
             );
         }
@@ -3974,13 +4009,13 @@ class LedgervoucherApi
      * Upload attachment to voucher. If the voucher already has an attachment the content will be appended to the existing attachment as new PDF page(s). Valid document formats are PDF, PNG, JPEG and TIFF. Non PDF formats will be converted to PDF. Send as multipart form.
      *
      * @param  int $voucher_id Voucher ID to upload attachment to. (required)
-     * @param  \SplFileObject $file file (optional)
+     * @param  \SplFileObject $file The file (required)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function uploadAttachment($voucher_id, $file = null)
+    public function uploadAttachment($voucher_id, $file)
     {
         $this->uploadAttachmentWithHttpInfo($voucher_id, $file);
     }
@@ -3991,13 +4026,13 @@ class LedgervoucherApi
      * Upload attachment to voucher. If the voucher already has an attachment the content will be appended to the existing attachment as new PDF page(s). Valid document formats are PDF, PNG, JPEG and TIFF. Non PDF formats will be converted to PDF. Send as multipart form.
      *
      * @param  int $voucher_id Voucher ID to upload attachment to. (required)
-     * @param  \SplFileObject $file (optional)
+     * @param  \SplFileObject $file The file (required)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function uploadAttachmentWithHttpInfo($voucher_id, $file = null)
+    public function uploadAttachmentWithHttpInfo($voucher_id, $file)
     {
         $returnType = '';
         $request = $this->uploadAttachmentRequest($voucher_id, $file);
@@ -4045,12 +4080,12 @@ class LedgervoucherApi
      * Upload attachment to voucher. If the voucher already has an attachment the content will be appended to the existing attachment as new PDF page(s). Valid document formats are PDF, PNG, JPEG and TIFF. Non PDF formats will be converted to PDF. Send as multipart form.
      *
      * @param  int $voucher_id Voucher ID to upload attachment to. (required)
-     * @param  \SplFileObject $file (optional)
+     * @param  \SplFileObject $file The file (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function uploadAttachmentAsync($voucher_id, $file = null)
+    public function uploadAttachmentAsync($voucher_id, $file)
     {
         return $this->uploadAttachmentAsyncWithHttpInfo($voucher_id, $file)
             ->then(
@@ -4066,12 +4101,12 @@ class LedgervoucherApi
      * Upload attachment to voucher. If the voucher already has an attachment the content will be appended to the existing attachment as new PDF page(s). Valid document formats are PDF, PNG, JPEG and TIFF. Non PDF formats will be converted to PDF. Send as multipart form.
      *
      * @param  int $voucher_id Voucher ID to upload attachment to. (required)
-     * @param  \SplFileObject $file (optional)
+     * @param  \SplFileObject $file The file (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function uploadAttachmentAsyncWithHttpInfo($voucher_id, $file = null)
+    public function uploadAttachmentAsyncWithHttpInfo($voucher_id, $file)
     {
         $returnType = '';
         $request = $this->uploadAttachmentRequest($voucher_id, $file);
@@ -4103,17 +4138,23 @@ class LedgervoucherApi
      * Create request for operation 'uploadAttachment'
      *
      * @param  int $voucher_id Voucher ID to upload attachment to. (required)
-     * @param  \SplFileObject $file (optional)
+     * @param  \SplFileObject $file The file (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function uploadAttachmentRequest($voucher_id, $file = null)
+    protected function uploadAttachmentRequest($voucher_id, $file)
     {
         // verify the required parameter 'voucher_id' is set
         if ($voucher_id === null || (is_array($voucher_id) && count($voucher_id) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $voucher_id when calling uploadAttachment'
+            );
+        }
+        // verify the required parameter 'file' is set
+        if ($file === null || (is_array($file) && count($file) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $file when calling uploadAttachment'
             );
         }
 
@@ -4214,13 +4255,13 @@ class LedgervoucherApi
      *
      * @param  int $voucher_id Voucher ID to upload PDF to. (required)
      * @param  string $file_name File name to store the pdf under. Will not be the same as the filename on the file returned. (required)
-     * @param  \SplFileObject $file file (optional)
+     * @param  \SplFileObject $file The file (required)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return void
      */
-    public function uploadPdf($voucher_id, $file_name, $file = null)
+    public function uploadPdf($voucher_id, $file_name, $file)
     {
         $this->uploadPdfWithHttpInfo($voucher_id, $file_name, $file);
     }
@@ -4232,13 +4273,13 @@ class LedgervoucherApi
      *
      * @param  int $voucher_id Voucher ID to upload PDF to. (required)
      * @param  string $file_name File name to store the pdf under. Will not be the same as the filename on the file returned. (required)
-     * @param  \SplFileObject $file (optional)
+     * @param  \SplFileObject $file The file (required)
      *
      * @throws \Tripletex\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
-    public function uploadPdfWithHttpInfo($voucher_id, $file_name, $file = null)
+    public function uploadPdfWithHttpInfo($voucher_id, $file_name, $file)
     {
         $returnType = '';
         $request = $this->uploadPdfRequest($voucher_id, $file_name, $file);
@@ -4287,12 +4328,12 @@ class LedgervoucherApi
      *
      * @param  int $voucher_id Voucher ID to upload PDF to. (required)
      * @param  string $file_name File name to store the pdf under. Will not be the same as the filename on the file returned. (required)
-     * @param  \SplFileObject $file (optional)
+     * @param  \SplFileObject $file The file (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function uploadPdfAsync($voucher_id, $file_name, $file = null)
+    public function uploadPdfAsync($voucher_id, $file_name, $file)
     {
         return $this->uploadPdfAsyncWithHttpInfo($voucher_id, $file_name, $file)
             ->then(
@@ -4309,12 +4350,12 @@ class LedgervoucherApi
      *
      * @param  int $voucher_id Voucher ID to upload PDF to. (required)
      * @param  string $file_name File name to store the pdf under. Will not be the same as the filename on the file returned. (required)
-     * @param  \SplFileObject $file (optional)
+     * @param  \SplFileObject $file The file (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function uploadPdfAsyncWithHttpInfo($voucher_id, $file_name, $file = null)
+    public function uploadPdfAsyncWithHttpInfo($voucher_id, $file_name, $file)
     {
         $returnType = '';
         $request = $this->uploadPdfRequest($voucher_id, $file_name, $file);
@@ -4347,12 +4388,12 @@ class LedgervoucherApi
      *
      * @param  int $voucher_id Voucher ID to upload PDF to. (required)
      * @param  string $file_name File name to store the pdf under. Will not be the same as the filename on the file returned. (required)
-     * @param  \SplFileObject $file (optional)
+     * @param  \SplFileObject $file The file (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function uploadPdfRequest($voucher_id, $file_name, $file = null)
+    protected function uploadPdfRequest($voucher_id, $file_name, $file)
     {
         // verify the required parameter 'voucher_id' is set
         if ($voucher_id === null || (is_array($voucher_id) && count($voucher_id) === 0)) {
@@ -4364,6 +4405,12 @@ class LedgervoucherApi
         if ($file_name === null || (is_array($file_name) && count($file_name) === 0)) {
             throw new \InvalidArgumentException(
                 'Missing the required parameter $file_name when calling uploadPdf'
+            );
+        }
+        // verify the required parameter 'file' is set
+        if ($file === null || (is_array($file) && count($file) === 0)) {
+            throw new \InvalidArgumentException(
+                'Missing the required parameter $file when calling uploadPdf'
             );
         }
 

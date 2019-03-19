@@ -9,8 +9,9 @@ Name | Type | Description | Notes
 **url** | **string** |  | [optional] 
 **posted_date** | **string** |  | [optional] 
 **description** | **string** |  | [optional] 
-**amount_currency** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
+**amount_currency** | **float** |  | [optional] 
 **bank_statement** | [**\Tripletex\Model\BankStatement**](BankStatement.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

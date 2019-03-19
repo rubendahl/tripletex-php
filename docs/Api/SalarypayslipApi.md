@@ -1,6 +1,6 @@
 # Tripletex\SalarypayslipApi
 
-All URIs are relative to *//tripletex.no/v2*
+All URIs are relative to *https://tripletex.no/v2*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -8,15 +8,19 @@ Method | HTTP request | Description
 [**get**](SalarypayslipApi.md#get) | **GET** /salary/payslip/{id} | [BETA] Find payslip by ID.
 [**search**](SalarypayslipApi.md#search) | **GET** /salary/payslip | [BETA] Find payslips corresponding with sent data.
 
+
 # **downloadPdf**
 > string downloadPdf($id)
 
 [BETA] Find payslip (PDF document) by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -44,7 +48,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
+ **id** | **int**| Element ID |
 
 ### Return type
 
@@ -66,10 +70,13 @@ Name | Type | Description  | Notes
 
 [BETA] Find payslip by ID.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -98,8 +105,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**int**](../Model/.md)| Element ID |
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **int**| Element ID |
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -112,7 +119,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 
@@ -121,10 +128,13 @@ Name | Type | Description  | Notes
 
 [BETA] Find payslips corresponding with sent data.
 
+
+
 ### Example
 ```php
 <?php
 require_once(__DIR__ . '/vendor/autoload.php');
+
 // Configure HTTP basic authorization: tokenAuthScheme
 $config = Tripletex\Configuration::getDefaultConfiguration()
               ->setUsername('YOUR_USERNAME')
@@ -148,8 +158,8 @@ $month_to = 56; // int | To and excluding
 $voucher_date_from = "voucher_date_from_example"; // string | From and including
 $voucher_date_to = "voucher_date_to_example"; // string | To and excluding
 $comment = "comment_example"; // string | Containing
-$from = 56; // int | From index
-$count = 56; // int | Number of elements to return
+$from = 0; // int | From index
+$count = 1000; // int | Number of elements to return
 $sorting = "sorting_example"; // string | Sorting pattern
 $fields = "fields_example"; // string | Fields filter pattern
 
@@ -166,21 +176,21 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | [**string**](../Model/.md)| List of IDs | [optional]
- **employee_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **wage_transaction_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **activity_id** | [**string**](../Model/.md)| List of IDs | [optional]
- **year_from** | [**int**](../Model/.md)| From and including | [optional]
- **year_to** | [**int**](../Model/.md)| To and excluding | [optional]
- **month_from** | [**int**](../Model/.md)| From and including | [optional]
- **month_to** | [**int**](../Model/.md)| To and excluding | [optional]
- **voucher_date_from** | [**string**](../Model/.md)| From and including | [optional]
- **voucher_date_to** | [**string**](../Model/.md)| To and excluding | [optional]
- **comment** | [**string**](../Model/.md)| Containing | [optional]
- **from** | [**int**](../Model/.md)| From index | [optional]
- **count** | [**int**](../Model/.md)| Number of elements to return | [optional]
- **sorting** | [**string**](../Model/.md)| Sorting pattern | [optional]
- **fields** | [**string**](../Model/.md)| Fields filter pattern | [optional]
+ **id** | **string**| List of IDs | [optional]
+ **employee_id** | **string**| List of IDs | [optional]
+ **wage_transaction_id** | **string**| List of IDs | [optional]
+ **activity_id** | **string**| List of IDs | [optional]
+ **year_from** | **int**| From and including | [optional]
+ **year_to** | **int**| To and excluding | [optional]
+ **month_from** | **int**| From and including | [optional]
+ **month_to** | **int**| To and excluding | [optional]
+ **voucher_date_from** | **string**| From and including | [optional]
+ **voucher_date_to** | **string**| To and excluding | [optional]
+ **comment** | **string**| Containing | [optional]
+ **from** | **int**| From index | [optional] [default to 0]
+ **count** | **int**| Number of elements to return | [optional] [default to 1000]
+ **sorting** | **string**| Sorting pattern | [optional]
+ **fields** | **string**| Fields filter pattern | [optional]
 
 ### Return type
 
@@ -193,7 +203,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: */*
+ - **Accept**: Not defined
 
 [[Back to top]](#) [[Back to API list]](../../README.md#documentation-for-api-endpoints) [[Back to Model list]](../../README.md#documentation-for-models) [[Back to README]](../../README.md)
 

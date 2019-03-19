@@ -13,11 +13,12 @@ Name | Type | Description | Notes
 **date** | **string** |  | 
 **departure_location** | **string** |  | 
 **destination** | **string** |  | 
-**km** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**rate** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**amount** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
+**km** | **float** |  | [optional] 
+**rate** | **float** |  | [optional] 
+**amount** | **float** |  | [optional] 
 **is_company_car** | **bool** |  | [optional] [default to false]
 **passengers** | [**\Tripletex\Model\Passenger[]**](Passenger.md) | Link to individual passengers. | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

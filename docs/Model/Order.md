@@ -14,8 +14,8 @@ Name | Type | Description | Notes
 **overdue_notice_email** | **string** |  | [optional] 
 **number** | **string** |  | [optional] 
 **reference** | **string** |  | [optional] 
-**our_contact** | [**\Tripletex\Model\Contact**](Contact.md) |  | [optional] 
-**our_contact_employee** | [**\Tripletex\Model\Employee**](Employee.md) |  | [optional] 
+**our_contact** | [**\Tripletex\Model\Contact**](Contact.md) | If the contact is not an employee | [optional] 
+**our_contact_employee** | [**\Tripletex\Model\Employee**](Employee.md) | If the contact is an employee | [optional] 
 **department** | [**\Tripletex\Model\Department**](Department.md) |  | [optional] 
 **order_date** | **string** |  | 
 **project** | [**\Tripletex\Model\Project**](Project.md) |  | [optional] 
@@ -26,7 +26,7 @@ Name | Type | Description | Notes
 **is_show_open_posts_on_invoices** | **bool** | Show account statement - open posts on invoices created from this order | [optional] [default to false]
 **is_closed** | **bool** | Denotes if this order is closed. A closed order can no longer be invoiced unless it is opened again. | [optional] [default to false]
 **delivery_date** | **string** |  | 
-**delivery_address** | [**\Tripletex\Model\Address**](Address.md) |  | [optional] 
+**delivery_address** | [**\Tripletex\Model\Address**](Address.md) | Delivery address of this order. This can be a new or existing address | [optional] 
 **delivery_comment** | **string** |  | [optional] 
 **is_prioritize_amounts_including_vat** | **bool** |  | [optional] [default to false]
 **order_line_sorting** | **string** |  | [optional] 
@@ -42,4 +42,5 @@ Name | Type | Description | Notes
 **is_subscription_auto_invoicing** | **bool** | Automatic invoicing. Starts when the subscription is approved | [optional] [default to false]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

@@ -3,7 +3,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**administrator** | [**\Tripletex\Model\Employee**](Employee.md) |  | [optional] 
+**administrator** | [**\Tripletex\Model\Employee**](Employee.md) | Administrator user to create in the new company. Leave empty if calling this enpoint as an auditor og accountant company | [optional] 
 **customer_id** | **int** | The customer id to an already created customer to create a Tripletex account for. | [optional] 
 **account_type** | **string** |  | 
 **modules** | [**\Tripletex\Model\Modules**](Modules.md) |  | 
@@ -19,4 +19,5 @@ Name | Type | Description | Notes
 **chart_of_accounts_type** | **string** | The chart of accounts to use for the new company | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 

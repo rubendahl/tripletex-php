@@ -9,10 +9,11 @@ Name | Type | Description | Notes
 **url** | **string** |  | [optional] 
 **rate_category** | [**\Tripletex\Model\TravelExpenseRateCategory**](TravelExpenseRateCategory.md) |  | 
 **zone** | **string** |  | 
-**rate** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**breakfast_deduction_rate** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**lunch_deduction_rate** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
-**dinner_deduction_rate** | [**BigDecimal**](BigDecimal.md) |  | [optional] 
+**rate** | **float** |  | [optional] 
+**breakfast_deduction_rate** | **float** |  | [optional] 
+**lunch_deduction_rate** | **float** |  | [optional] 
+**dinner_deduction_rate** | **float** |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
 
