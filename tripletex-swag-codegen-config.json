@@ -2,5 +2,5 @@
 	"invokerPackage": "Tripletex",
 	"TODO_apiPackage": "Tripletex",
 	"TODO_modelPackage": "Tripletex",
-	"TODO_packagePath": "Tripletex"
+	"packagePath": "."
 }
